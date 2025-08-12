@@ -7,22 +7,17 @@
 <meta name="theme-color" content="#0D1F4F" />
 <style>
 :root{
-  /* Azul */
   --blue-1:#0E2B66; --blue-2:#0A1F4A;
-  --blue-text:#F1F6FF; --blue-muted:#C7D6FF; --blue-stroke:rgba(255,255,255,.14);
-  /* Branco (cards) */
-  --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6; --chip:#F6F8FD;
-  /* Acentos */
+  --blue-text:#F1F6FF; --blue-muted:#C7D6FF;
+  --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6;
   --brand:#2F79FF; --brand-2:#2EC8FF;
-  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC;  /* CTA mais escuro */
+  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC; /* CTA escuro */
   --accent:#25D366; --warn:#FFC857;
-  /* Layout */
   --radius:22px; --maxw:1160px; --tr:260ms cubic-bezier(.2,.7,.2,1);
 }
 
 /* Base */
-*{box-sizing:border-box}
-html,body{height:100%}
+*{box-sizing:border-box} html,body{height:100%}
 body{
   margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
   color:var(--blue-text); line-height:1.65;
@@ -35,61 +30,73 @@ a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 .section{padding:64px 0}
 @media (max-width:980px){.section{padding:44px 0}}
-.section.blue{background:transparent;color:var(--blue-text)}
 h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
 h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 10px}
 .sub{font-size:clamp(.95rem,.75rem+1vw,1.15rem);margin-top:10px;opacity:.95}
 .justify,.justify p,.justify li{text-align:justify}
 h1,h2,p,li{overflow-wrap:anywhere}
 
-/* Header fixo */
+/* ===== HEADER novo (glass, logos, premium) ===== */
 .header{
   position:sticky; top:0; z-index:100;
   backdrop-filter:saturate(1.2) blur(10px);
   background:rgba(8,20,50,.55);
   border-bottom:1px solid rgba(255,255,255,.12);
 }
-.nav{display:flex;align-items:center;justify-content:flex-start;gap:18px;min-height:62px}
+.nav{
+  display:flex;align-items:center;gap:18px;min-height:68px;
+}
+.brand-card{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 8px 24px rgba(5,10,25,.25), inset 0 1px 0 rgba(255,255,255,.08);
+}
 .logo-pill{
   display:flex;align-items:center;justify-content:center;
-  height:38px; padding:6px 10px; border-radius:12px;
-  background:#fff; border:1px solid #E8EEFA;
+  height:40px;padding:6px 10px;border-radius:12px;
+  background:#fff;border:1px solid #E8EEFA;
   box-shadow:0 6px 14px rgba(10,25,60,.25), inset 0 1px 0 rgba(9,30,66,.06);
 }
-.logo-pill img{max-height:26px; display:block}
-.logo-fallback{font-weight:900; font-size:.92rem; color:#123; white-space:nowrap}
-.brand-sep{color:#fff; opacity:.75; font-weight:800}
+.logo-pill img{
+  max-height:28px; display:block; object-fit:contain; aspect-ratio:auto;
+}
+.brand-and{
+  font-weight:900;color:#fff;opacity:.9;padding:0 2px;
+}
 
-/* Cards brancos — premium + contraste */
+/* ===== Cards brancos premium ===== */
 .card-white{
-  background:var(--white); color:var(--ink);
+  --card-bg: linear-gradient(180deg,#FFFFFF 0%, #FAFCFF 100%);
+  background:var(--card-bg); color:var(--ink);
   border:1px solid var(--white-stroke);
   border-radius:var(--radius); padding:22px;
   box-shadow:0 26px 52px rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.12), inset 0 1px 0 rgba(9,30,66,.06);
   max-width:72ch;
 }
-.section.blue .card-white{box-shadow:0 26px 52px rgba(0,0,0,.25),0 10px 26px rgba(0,0,0,.16),inset 0 1px 0 rgba(9,30,66,.06)}
 .card-white :is(p,li,span,small,strong){color:var(--ink) !important}
 .card-white .lead{color:var(--ink-muted) !important}
-.card-white a{color:#1B56FF !important}
-.card-white .btn-ghost{color:var(--ink) !important;border-color:var(--ink) !important}
 
-/* Divisórias internas */
+/* Divisórias internas (acabamento) */
 .section-split{max-width:72ch}
-.section-split > *{margin:0;padding:12px 14px;border-radius:14px;background:#F8FAFF;border:1px solid #DFE8F5}
-.section-split > * + *{margin-top:10px;box-shadow:inset 0 1px 0 rgba(9,30,66,.06)}
+.section-split > *{
+  margin:0;padding:12px 14px;border-radius:14px;background:#F8FAFF;border:1px solid #DFE8F5;
+  box-shadow:inset 0 1px 0 rgba(9,30,66,.06);
+}
+.section-split > * + *{margin-top:10px}
 
 /* Listas */
 .list{list-style:none;margin:0;padding:0;max-width:72ch}
 .card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7;color:var(--ink) !important}
 .list li+li{margin-top:10px}
 
-/* Botões */
+/* ===== Botões ===== */
 .btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
-/* CTA principal — gradiente escuro, texto branco */
+/* CTA principal — gradiente escuro + texto branco visível SEMPRE */
 .btn-primary{
   background:linear-gradient(135deg,var(--brand-dark1),var(--brand-dark2));
-  color:#FFFFFF; min-height:56px;
+  color:#FFFFFF !important; text-shadow:0 1px 0 rgba(0,0,0,.25);
+  min-height:56px;
   box-shadow:0 16px 36px rgba(20,70,180,.35),0 8px 18px rgba(14,118,204,.22);
 }
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 20px 40px rgba(20,70,180,.42),0 10px 22px rgba(14,118,204,.28)}
@@ -98,7 +105,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .btn-ghost:hover{background:#F5F8FF;border-color:#9FB3DD}
 .btn-block{width:100%}
 
-/* Como funciona */
+/* ===== Como funciona ===== */
 .center{text-align:center}
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,300px));justify-content:center;justify-items:center;text-align:center}
 @media (max-width:980px){.steps{grid-template-columns:1fr}}
@@ -107,7 +114,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747}
 .step p{margin:0;color:#4a5d7b}
 
-/* Depoimentos — vitrine com texto branco */
+/* ===== Depoimentos ===== */
 .carousel{position:relative}
 .carousel::before,.carousel::after{
   content:""; position:absolute; top:14px; bottom:46px; width:28px; z-index:3; pointer-events:none;
@@ -128,17 +135,11 @@ h1,h2,p,li{overflow-wrap:anywhere}
   border:1px solid rgba(255,255,255,.28);
   border-radius:22px; padding:18px 18px 16px 18px;
   box-shadow:0 16px 30px rgba(8,14,28,.35), inset 0 1px 0 rgba(255,255,255,.12);
-  cursor:pointer;
-  transition:transform .28s var(--tr), box-shadow .28s var(--tr), border-color .28s var(--tr), background .28s var(--tr);
+  cursor:pointer; transition:transform .28s var(--tr), box-shadow .28s var(--tr), border-color .28s var(--tr), background .28s var(--tr);
 }
-.tcard:hover,.tcard.open{
-  transform:translateY(-2px) scale(1.01);
-  box-shadow:0 24px 46px rgba(8,14,28,.45);
-  border-color:rgba(255,255,255,.48);
-  background:linear-gradient(180deg,#244A8E,#173464);
-}
-/* força branco nos depoimentos */
-.tcard .tText, .tcard .tmeta strong, .tcard .tmeta .area, .tcard *{color:#FFFFFF !important}
+/* TUDO branco aqui dentro */
+.tcard *{color:#FFFFFF !important}
+.tcard:hover,.tcard.open{ transform:translateY(-2px) scale(1.01); box-shadow:0 24px 46px rgba(8,14,28,.45); border-color:rgba(255,255,255,.48); background:linear-gradient(180deg,#244A8E,#173464)}
 .thead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
 .tmeta strong{display:block;line-height:1.1}
@@ -149,12 +150,18 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .dot{width:8px;height:8px;border-radius:50%;background:#C8D6F0}
 .dot.active{background:#2F79FF;transform:scale(1.1)}
 
-/* Checkout — 2 col desktop / 1 col mobile */
+/* ===== Checkout ===== */
 #checkout .card-white{max-width:none}
 .headline{
   font-weight:900; margin:12px 0 8px; position:relative; display:inline-block;
   background:linear-gradient(0deg,rgba(47,121,255,.23) 0, rgba(47,121,255,0) 60%);
   padding-bottom:4px; border-radius:6px;
+}
+/* chip amarelo fora de qualquer fundo azul */
+.ribbon-chip{
+  display:inline-block;background:linear-gradient(135deg,#FFD76A,#FFC23A);color:#1B1300;
+  padding:6px 10px;border-radius:12px;font-weight:900;border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 6px 14px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.55);
 }
 .checkout-grid{display:grid; gap:22px; align-items:start; grid-template-columns:1fr}
 @media (min-width:980px){.checkout-grid{grid-template-columns:1.2fr .8fr}}
@@ -167,25 +174,19 @@ h1,h2,p,li{overflow-wrap:anywhere}
 }
 .badge-time strong{font-weight:900}
 .cta{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.cta .btn-primary{padding:16px 20px;font-size:1.06rem}
 .badges{display:flex;gap:10px;flex-wrap:wrap;opacity:.9}
 .badge{padding:6px 10px;border-radius:999px;border:1px solid #E1E8F6;background:#F7FAFF;color:#2A3E63;font-weight:700;font-size:.86rem}
 
-/* WhatsApp flutuante */
+/* WA flutuante */
 .float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr),transform var(--tr)}
 .float-wa.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:var(--accent);color:#0C2A18;font-weight:900;border:0;box-shadow:0 12px 26px rgba(0,0,0,.4);cursor:pointer}
 
-/* Entradas + acessibilidade */
+/* Entradas & responsivo */
 [data-anim]{opacity:0;transform:translateY(14px);transition:opacity .55s var(--tr),transform .55s var(--tr)}
 .in{opacity:1;transform:translateY(0)}
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
-@media (max-width:520px){.btn{padding:16px 18px}}
-.card-white:hover{transform:translateY(-1px)}
-@media (max-width:720px){
-  .card-white,.tcard{border-radius:18px}
-  .steps{gap:14px}
-}
+@media (max-width:720px){.card-white,.tcard{border-radius:18px} .steps{gap:14px}}
 </style>
 </head>
 <body>
@@ -194,29 +195,33 @@ h1,h2,p,li{overflow-wrap:anywhere}
 <header class="header">
   <div class="container">
     <nav class="nav">
-      <div class="logo-pill">
-        <img src="https://ibb.co/Xx4X30KC" alt="PG Concursos" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-        <span class="logo-fallback">PG Concursos</span>
-      </div>
-      <span class="brand-sep">&amp;</span>
-      <div class="logo-pill">
-        <img src="https://ibb.co/8nD1sjMk" alt="Dominando o Edital" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-        <span class="logo-fallback">Dominando o Edital</span>
+      <div class="brand-card">
+        <div class="logo-pill">
+          <img src="https://i.imgur.com/JagPjW3.jpeg" alt="PG Concursos" loading="eager" decoding="async"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+          <span class="logo-fallback" style="display:none;font-weight:900;color:#123">PG Concursos</span>
+        </div>
+        <span class="brand-and">&amp;</span>
+        <div class="logo-pill">
+          <img src="https://i.imgur.com/ctiOByT.jpeg" alt="Dominando o Edital" loading="eager" decoding="async"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+          <span class="logo-fallback" style="display:none;font-weight:900;color:#123">Dominando o Edital</span>
+        </div>
       </div>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<header class="section blue">
+<section class="section">
   <div class="container">
     <h1 data-anim>Manual do Aprovado</h1>
     <p class="sub" data-anim>O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.</p>
   </div>
-</header>
+</section>
 
 <!-- Detalhes -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <div class="card-white justify" data-anim>
       <div class="section-split">
@@ -228,7 +233,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- Pra quem é -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <h2 data-anim>Pra quem é o Manual do Aprovado?</h2>
     <div class="card-white justify" data-anim>
@@ -243,7 +248,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- O que você vai aprender? -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <h2 data-anim>O que você vai aprender?</h2>
     <div class="card-white justify" data-anim>
@@ -270,7 +275,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- Quem elaborou -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <h2 data-anim>Quem elaborou este material</h2>
     <div class="card-white justify" data-anim>
@@ -283,7 +288,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- Como funciona -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <h2 class="center" data-anim>Como funciona?</h2>
     <div class="steps" data-anim>
@@ -295,35 +300,15 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- Depoimentos -->
-<section class="section blue">
+<section class="section">
   <div class="container">
     <h2 data-anim>O que falam sobre o Manual do Aprovado</h2>
     <div class="card-white carousel" data-anim aria-roledescription="carrossel" aria-label="Depoimentos de alunos">
       <div class="track" id="track" role="group">
-        <article class="slide">
-          <div class="tcard" tabindex="0">
-            <div class="thead"><div class="avatar">M</div><div class="tmeta"><strong>Mariana</strong><span class="area">Área administrativa</span></div></div>
-            <p class="tText">Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo, organizei revisões e comecei a subir nas questões. O que mais gostei foi entender exatamente o que fazer no pré e no pós-edital sem perder tempo.</p>
-          </div>
-        </article>
-        <article class="slide">
-          <div class="tcard" tabindex="0">
-            <div class="thead"><div class="avatar">D</div><div class="tmeta"><strong>Diego</strong><span class="area">Tribunais</span></div></div>
-            <p class="tText">Eu não sabia revisar. O passo a passo tirou a dúvida diária do “o que estudar hoje”. Usei o ciclo, revisões e lei seca como o manual orienta e destravei. Hoje acompanho minha evolução sem me sentir perdido.</p>
-          </div>
-        </article>
-        <article class="slide">
-          <div class="tcard" tabindex="0">
-            <div class="thead"><div class="avatar">S</div><div class="tmeta"><strong>Sofia</strong><span class="area">Carreiras policiais</span></div></div>
-            <p class="tText">Aprendi a combinar PDF, videoaula e lei seca sem desperdício. Parei de fazer resumos enormes e passei a revisar com método. Meu rendimento aumentou e a ansiedade diminuiu muito.</p>
-          </div>
-        </article>
-        <article class="slide">
-          <div class="tcard" tabindex="0">
-            <div class="thead"><div class="avatar">R</div><div class="tmeta"><strong>Rafael</strong><span class="area">Fiscal</span></div></div>
-            <p class="tText">Com o plano de pré e pós-edital, parei de recomeçar do zero a cada edital. O manual mostra o ritmo certo, quando acelerar e como fechar a reta final com segurança.</p>
-          </div>
-        </article>
+        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">M</div><div class="tmeta"><strong>Mariana</strong><span class="area">Área administrativa</span></div></div><p class="tText">Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo, organizei revisões e comecei a subir nas questões. O que mais gostei foi entender exatamente o que fazer no pré e no pós-edital sem perder tempo.</p></div></article>
+        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">D</div><div class="tmeta"><strong>Diego</strong><span class="area">Tribunais</span></div></div><p class="tText">Eu não sabia revisar. O passo a passo tirou a dúvida diária do “o que estudar hoje”. Usei o ciclo, revisões e lei seca como o manual orienta e destravei. Hoje acompanho minha evolução sem me sentir perdido.</p></div></article>
+        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">S</div><div class="tmeta"><strong>Sofia</strong><span class="area">Carreiras policiais</span></div></div><p class="tText">Aprendi a combinar PDF, videoaula e lei seca sem desperdício. Parei de fazer resumos enormes e passei a revisar com método. Meu rendimento aumentou e a ansiedade diminuiu muito.</p></div></article>
+        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">R</div><div class="tmeta"><strong>Rafael</strong><span class="area">Fiscal</span></div></div><p class="tText">Com o plano de pré e pós-edital, parei de recomeçar do zero a cada edital. O manual mostra o ritmo certo, quando acelerar e como fechar a reta final com segurança.</p></div></article>
       </div>
       <div class="dots" id="dots" aria-hidden="true">
         <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -333,12 +318,12 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- Checkout -->
-<section id="checkout" class="section blue">
+<section id="checkout" class="section">
   <div class="container">
     <div class="card-white" data-anim>
       <div class="checkout-grid">
         <div>
-          <span class="ribbon" style="display:inline-block;background:linear-gradient(135deg,var(--warn),#FFD77E);color:#1B1300;padding:6px 10px;border-radius:10px;font-weight:900">Oferta por tempo limitado</span>
+          <span class="ribbon-chip">Oferta por tempo limitado</span>
           <h2 class="headline">Acesse o Manual do Aprovado agora</h2>
           <p class="lead justify" style="color:var(--ink-muted)">Sua compra 100% segura e garantida. Se tiver dúvidas, fale conosco no WhatsApp antes de finalizar.</p>
 
@@ -365,7 +350,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- WhatsApp flutuante -->
+<!-- WA flutuante -->
 <div class="float-wa" id="waFloat" aria-hidden="true">
   <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
@@ -375,13 +360,13 @@ h1,h2,p,li{overflow-wrap:anywhere}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
-/* WhatsApp flutuante só no checkout */
+/* WA flutuante só no checkout */
 const checkout=document.getElementById('checkout');
 const waFloat=document.getElementById('waFloat');
 new IntersectionObserver(es=>es.forEach(e=>waFloat.classList.toggle('visible',e.isIntersecting)),{threshold:.25}).observe(checkout);
 document.getElementById('askBtn')?.addEventListener('click',()=>window.open(document.getElementById('waLink').href,'_blank','noopener'));
 
-/* Prefetch pagamento quando checkout entrar na tela */
+/* Prefetch pagamento quando checkout entra na tela */
 new IntersectionObserver(es=>{
   if(es.some(e=>e.isIntersecting)){
     const href=document.getElementById('buyBtn')?.getAttribute('href');
@@ -409,33 +394,28 @@ new IntersectionObserver(es=>{
     [...dots].forEach((d,i)=>d.classList.toggle('active',i===best));
   }
   track.addEventListener('scroll',()=>requestAnimationFrame(setActive));
-
-  // arraste
   let down=false,startX=0,scrollX=0;
   track.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;scrollX=track.scrollLeft;track.setPointerCapture(e.pointerId)});
   track.addEventListener('pointermove',e=>{if(!down)return;track.scrollLeft=scrollX-(e.clientX-startX)});
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev,()=>{down=false}));
-  // teclado
   track.setAttribute('tabindex','0');
   track.addEventListener('keydown',e=>{if(e.key==='ArrowRight')track.scrollBy({left:340,behavior:'smooth'});if(e.key==='ArrowLeft')track.scrollBy({left:-340,behavior:'smooth'})});
 
-  // abrir/fechar depoimentos
   const cards=[...document.querySelectorAll('.tcard')];
-  function closeAll(except){cards.forEach(c=>{if(c!==except)c.classList.remove('open')})}
+  function closeAll(ex){cards.forEach(c=>{if(c!==ex)c.classList.remove('open')})}
   cards.forEach(c=>{
     c.addEventListener('pointerenter',()=>{closeAll(c);c.classList.add('open')});
     c.addEventListener('pointerleave',()=>c.classList.remove('open'));
     c.addEventListener('click',()=>{c.classList.toggle('open'); if(c.classList.contains('open')) closeAll(c)});
     c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); } });
   });
-
   setActive();
 })();
 
-/* Countdown evergreen: sempre inicia em 10:00 com rótulo “Oferta válida por:” */
+/* Countdown evergreen: sempre 10:00 (Oferta válida por:) */
 (function(){
   const el=document.getElementById('countdown'); if(!el)return;
-  let deadline = Date.now() + (10*60*1000); // 10 minutos a partir da abertura
+  let deadline = Date.now() + (10*60*1000);
   function tick(){
     const diff = deadline - Date.now();
     if(diff<=0){ el.textContent = "00:00"; return; }
