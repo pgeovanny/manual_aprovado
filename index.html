@@ -8,13 +8,13 @@
 <style>
 :root{
   /* Azul */
-  --blue-1:#0E2B66; --blue-2:#0A1F4A; /* fundo */
+  --blue-1:#0E2B66; --blue-2:#0A1F4A;
   --blue-text:#F1F6FF; --blue-muted:#C7D6FF; --blue-stroke:rgba(255,255,255,.14);
   /* Branco (cards) */
   --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6; --chip:#F6F8FD;
   /* Acentos */
   --brand:#2F79FF; --brand-2:#2EC8FF;
-  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC; /* GRADIENTE MAIS ESCURO (CTA) */
+  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC;  /* CTA mais escuro */
   --accent:#25D366; --warn:#FFC857;
   /* Layout */
   --radius:22px; --maxw:1160px; --tr:260ms cubic-bezier(.2,.7,.2,1);
@@ -24,10 +24,8 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
   color:var(--blue-text); line-height:1.65;
-  /* Degradê premium com radiais de profundidade */
   background:
     radial-gradient(1200px 800px at 16% -10%, rgba(60,110,220,.25), transparent 65%),
     radial-gradient(900px 700px at 82% 112%, rgba(6,22,60,.55), transparent 58%),
@@ -44,15 +42,30 @@ h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 10px}
 .justify,.justify p,.justify li{text-align:justify}
 h1,h2,p,li{overflow-wrap:anywhere}
 
-/* Cards brancos — acabamento premium e contraste garantido */
+/* Header fixo */
+.header{
+  position:sticky; top:0; z-index:100;
+  backdrop-filter:saturate(1.2) blur(10px);
+  background:rgba(8,20,50,.55);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.nav{display:flex;align-items:center;justify-content:flex-start;gap:18px;min-height:62px}
+.logo-pill{
+  display:flex;align-items:center;justify-content:center;
+  height:38px; padding:6px 10px; border-radius:12px;
+  background:#fff; border:1px solid #E8EEFA;
+  box-shadow:0 6px 14px rgba(10,25,60,.25), inset 0 1px 0 rgba(9,30,66,.06);
+}
+.logo-pill img{max-height:26px; display:block}
+.logo-fallback{font-weight:900; font-size:.92rem; color:#123; white-space:nowrap}
+.brand-sep{color:#fff; opacity:.75; font-weight:800}
+
+/* Cards brancos — premium + contraste */
 .card-white{
   background:var(--white); color:var(--ink);
   border:1px solid var(--white-stroke);
   border-radius:var(--radius); padding:22px;
-  box-shadow:
-    0 26px 52px rgba(0,0,0,.18),
-    0 10px 24px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(9,30,66,.06);
+  box-shadow:0 26px 52px rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.12), inset 0 1px 0 rgba(9,30,66,.06);
   max-width:72ch;
 }
 .section.blue .card-white{box-shadow:0 26px 52px rgba(0,0,0,.25),0 10px 26px rgba(0,0,0,.16),inset 0 1px 0 rgba(9,30,66,.06)}
@@ -61,30 +74,31 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .card-white a{color:#1B56FF !important}
 .card-white .btn-ghost{color:var(--ink) !important;border-color:var(--ink) !important}
 
-/* Seções internas / divisórias suaves */
+/* Divisórias internas */
 .section-split{max-width:72ch}
 .section-split > *{margin:0;padding:12px 14px;border-radius:14px;background:#F8FAFF;border:1px solid #DFE8F5}
 .section-split > * + *{margin-top:10px;box-shadow:inset 0 1px 0 rgba(9,30,66,.06)}
-/* Lista */
+
+/* Listas */
 .list{list-style:none;margin:0;padding:0;max-width:72ch}
 .card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7;color:var(--ink) !important}
 .list li+li{margin-top:10px}
 
 /* Botões */
 .btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
-/* CTA PRINCIPAL — gradiente mais escuro */
+/* CTA principal — gradiente escuro, texto branco */
 .btn-primary{
   background:linear-gradient(135deg,var(--brand-dark1),var(--brand-dark2));
-  color:#FFFFFF;
+  color:#FFFFFF; min-height:56px;
   box-shadow:0 16px 36px rgba(20,70,180,.35),0 8px 18px rgba(14,118,204,.22);
 }
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 20px 40px rgba(20,70,180,.42),0 10px 22px rgba(14,118,204,.28)}
 .btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
-.btn-ghost{background:transparent;border:1px solid currentColor;opacity:.95}
-.btn-ghost:hover{opacity:1}
+.btn-ghost{background:transparent;border:1px solid #C9D6EF;color:#243a63}
+.btn-ghost:hover{background:#F5F8FF;border-color:#9FB3DD}
 .btn-block{width:100%}
 
-/* Como funciona — centralizado */
+/* Como funciona */
 .center{text-align:center}
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,300px));justify-content:center;justify-items:center;text-align:center}
 @media (max-width:980px){.steps{grid-template-columns:1fr}}
@@ -93,7 +107,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747}
 .step p{margin:0;color:#4a5d7b}
 
-/* Depoimentos — vitrine com texto branco (legível) */
+/* Depoimentos — vitrine com texto branco */
 .carousel{position:relative}
 .carousel::before,.carousel::after{
   content:""; position:absolute; top:14px; bottom:46px; width:28px; z-index:3; pointer-events:none;
@@ -123,7 +137,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   border-color:rgba(255,255,255,.48);
   background:linear-gradient(180deg,#244A8E,#173464);
 }
-/* FORÇA BRANCO NOS DEPOIMENTOS */
+/* força branco nos depoimentos */
 .tcard .tText, .tcard .tmeta strong, .tcard .tmeta .area, .tcard *{color:#FFFFFF !important}
 .thead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
@@ -135,7 +149,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .dot{width:8px;height:8px;border-radius:50%;background:#C8D6F0}
 .dot.active{background:#2F79FF;transform:scale(1.1)}
 
-/* Checkout — visual pro, 2 colunas desktop / 1 coluna mobile */
+/* Checkout — 2 col desktop / 1 col mobile */
 #checkout .card-white{max-width:none}
 .headline{
   font-weight:900; margin:12px 0 8px; position:relative; display:inline-block;
@@ -148,15 +162,16 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .old{text-decoration:line-through;color:#5b6f8f}
 .now{font-size:clamp(2rem,1.5rem+1.5vw,2.7rem);font-weight:900;letter-spacing:-.02em}
 .badge-time{
-  display:inline-block;background:#0E2F74;color:#E6F0FF;border:1px solid #1B4DAA;
+  display:inline-flex;align-items:center;gap:8px;background:#0E2F74;color:#E6F0FF;border:1px solid #1B4DAA;
   padding:6px 10px;border-radius:999px;font-weight:800;font-size:.9rem
 }
-.cta{display:flex;flex-direction:column;gap:10px}
+.badge-time strong{font-weight:900}
+.cta{display:flex;flex-direction:column;gap:12px;margin-top:8px}
 .cta .btn-primary{padding:16px 20px;font-size:1.06rem}
 .badges{display:flex;gap:10px;flex-wrap:wrap;opacity:.9}
 .badge{padding:6px 10px;border-radius:999px;border:1px solid #E1E8F6;background:#F7FAFF;color:#2A3E63;font-weight:700;font-size:.86rem}
 
-/* WhatsApp flutuante (só no checkout) */
+/* WhatsApp flutuante */
 .float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr),transform var(--tr)}
 .float-wa.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:var(--accent);color:#0C2A18;font-weight:900;border:0;box-shadow:0 12px 26px rgba(0,0,0,.4);cursor:pointer}
@@ -167,7 +182,6 @@ h1,h2,p,li{overflow-wrap:anywhere}
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 @media (max-width:520px){.btn{padding:16px 18px}}
 .card-white:hover{transform:translateY(-1px)}
-/* Responsivo fino */
 @media (max-width:720px){
   .card-white,.tcard{border-radius:18px}
   .steps{gap:14px}
@@ -176,10 +190,22 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </head>
 <body>
 
-<!-- WhatsApp flutuante -->
-<div class="float-wa" id="waFloat" aria-hidden="true">
-  <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
-</div>
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="logo-pill">
+        <img src="https://ibb.co/Xx4X30KC" alt="PG Concursos" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+        <span class="logo-fallback">PG Concursos</span>
+      </div>
+      <span class="brand-sep">&amp;</span>
+      <div class="logo-pill">
+        <img src="https://ibb.co/8nD1sjMk" alt="Dominando o Edital" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+        <span class="logo-fallback">Dominando o Edital</span>
+      </div>
+    </nav>
+  </div>
+</header>
 
 <!-- HERO -->
 <header class="section blue">
@@ -315,15 +341,18 @@ h1,h2,p,li{overflow-wrap:anywhere}
           <span class="ribbon" style="display:inline-block;background:linear-gradient(135deg,var(--warn),#FFD77E);color:#1B1300;padding:6px 10px;border-radius:10px;font-weight:900">Oferta por tempo limitado</span>
           <h2 class="headline">Acesse o Manual do Aprovado agora</h2>
           <p class="lead justify" style="color:var(--ink-muted)">Sua compra 100% segura e garantida. Se tiver dúvidas, fale conosco no WhatsApp antes de finalizar.</p>
+
           <div class="price-wrap">
             <div class="old">de R$ 197,00</div>
             <div class="now">por R$ 97,00</div>
-            <span class="badge-time" id="countdown">10:00</span>
+            <span class="badge-time"><strong>Oferta válida por:</strong> <time id="countdown">10:00</time></span>
           </div>
+
           <div class="cta">
             <a class="btn btn-primary btn-block" id="buyBtn" href="PLACEHOLDER_PAYMENT_URL" target="_blank" rel="noopener">Quero garantir meu Manual agora</a>
             <button class="btn btn-ghost btn-block" id="askBtn">Ainda tem dúvidas? Fale conosco no WhatsApp</button>
           </div>
+
           <div class="badges" style="margin-top:10px">
             <div class="badge">Pagamento seguro</div>
             <div class="badge">Acesso imediato</div>
@@ -336,9 +365,9 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- WhatsApp flutuante (só no checkout) -->
-<div class="float-wa" id="waFloat2" aria-hidden="true">
-  <a class="wa-btn" id="waLink2" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
+<!-- WhatsApp flutuante -->
+<div class="float-wa" id="waFloat" aria-hidden="true">
+  <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
 <script>
@@ -348,27 +377,25 @@ document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
 /* WhatsApp flutuante só no checkout */
 const checkout=document.getElementById('checkout');
-function setupWA(floatId, linkId, btnId){
-  const f=document.getElementById(floatId), l=document.getElementById(linkId), b=document.getElementById(btnId);
-  const o=new IntersectionObserver(es=>es.forEach(e=>f.classList.toggle('visible',e.isIntersecting)),{threshold:.25});
-  o.observe(checkout); b?.addEventListener('click',()=>window.open(l.href,'_blank','noopener'));
-}
-setupWA('waFloat','waLink','askBtn'); setupWA('waFloat2','waLink2','askBtn');
+const waFloat=document.getElementById('waFloat');
+new IntersectionObserver(es=>es.forEach(e=>waFloat.classList.toggle('visible',e.isIntersecting)),{threshold:.25}).observe(checkout);
+document.getElementById('askBtn')?.addEventListener('click',()=>window.open(document.getElementById('waLink').href,'_blank','noopener'));
 
-/* Prefetch pagamento */
+/* Prefetch pagamento quando checkout entrar na tela */
 new IntersectionObserver(es=>{
   if(es.some(e=>e.isIntersecting)){
     const href=document.getElementById('buyBtn')?.getAttribute('href');
-    if(href&&!document.getElementById('pfLink')){const l=document.createElement('link');l.id='pfLink';l.rel='prefetch';l.href=href;document.head.appendChild(l);}
+    if(href&&!document.getElementById('pfLink')){
+      const l=document.createElement('link'); l.id='pfLink'; l.rel='prefetch'; l.href=href; document.head.appendChild(l);
+    }
     this && this.disconnect && this.disconnect();
   }
 },{threshold:.2}).observe(checkout);
 
-/* Vitrine + dots + abrir ao hover/toque */
+/* Carrossel + dots + abrir ao hover/toque */
 (function(){
   const track=document.getElementById('track');
   const dots=document.getElementById('dots').children;
-
   function setActive(){
     const slides=[...track.children];
     const tr=track.getBoundingClientRect();
@@ -383,15 +410,16 @@ new IntersectionObserver(es=>{
   }
   track.addEventListener('scroll',()=>requestAnimationFrame(setActive));
 
-  // Drag com mouse/touch
+  // arraste
   let down=false,startX=0,scrollX=0;
   track.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;scrollX=track.scrollLeft;track.setPointerCapture(e.pointerId)});
   track.addEventListener('pointermove',e=>{if(!down)return;track.scrollLeft=scrollX-(e.clientX-startX)});
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev,()=>{down=false}));
+  // teclado
   track.setAttribute('tabindex','0');
   track.addEventListener('keydown',e=>{if(e.key==='ArrowRight')track.scrollBy({left:340,behavior:'smooth'});if(e.key==='ArrowLeft')track.scrollBy({left:-340,behavior:'smooth'})});
 
-  // Abrir/fechar depoimentos
+  // abrir/fechar depoimentos
   const cards=[...document.querySelectorAll('.tcard')];
   function closeAll(except){cards.forEach(c=>{if(c!==except)c.classList.remove('open')})}
   cards.forEach(c=>{
@@ -404,15 +432,14 @@ new IntersectionObserver(es=>{
   setActive();
 })();
 
-/* Countdown 10 minutos (na badge) */
+/* Countdown evergreen: sempre inicia em 10:00 com rótulo “Oferta válida por:” */
 (function(){
   const el=document.getElementById('countdown'); if(!el)return;
-  const KEY='ma_deadline_10m'; let d=localStorage.getItem(KEY);
-  if(!d){const t=new Date(); t.setMinutes(t.getMinutes()+10); d=t.toISOString(); localStorage.setItem(KEY,d);}
+  let deadline = Date.now() + (10*60*1000); // 10 minutos a partir da abertura
   function tick(){
-    const now=new Date(), end=new Date(localStorage.getItem(KEY)); const diff=end-now;
-    if(diff<=0){el.textContent="encerrando"; return;}
-    const m=Math.floor(diff/6e4), s=Math.floor((diff%6e4)/1e3);
+    const diff = deadline - Date.now();
+    if(diff<=0){ el.textContent = "00:00"; return; }
+    const m=Math.floor(diff/60000), s=Math.floor((diff%60000)/1000);
     el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
   tick(); setInterval(tick,1000);
