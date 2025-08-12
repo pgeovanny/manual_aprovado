@@ -4,16 +4,26 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Manual do Aprovado — O passo a passo definitivo</title>
-<meta name="theme-color" content="#0A0F1F" />
+<meta name="theme-color" content="#0F2F7A" />
 <style>
 :root{
-  /* Azul (fundo) */
-  --blue-bg:#0A0F1F; --blue-bg-2:#0B1633;
-  --blue-text:#F1F6FF; --blue-muted:#A6B6CC; --blue-stroke:rgba(255,255,255,.12);
-  /* Branco (card) */
-  --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6; --chip:#F6F8FD;
+  /* Azul mais saturado */
+  --blue-bg:#0F2F7A;      /* azul principal */
+  --blue-bg-2:#0A225D;    /* azul profundo */
+  --blue-text:#F1F6FF;
+  --blue-muted:#BFD1FF;
+  --blue-stroke:rgba(255,255,255,.14);
+
+  /* Branco (cards) */
+  --white:#FFFFFF;
+  --ink:#172744;
+  --ink-muted:#4B5E7A;
+  --white-stroke:#E6ECF6;
+  --chip:#F6F8FD;
+
   /* Acentos */
   --brand:#2F79FF; --brand-2:#2EC8FF; --accent:#25D366; --warn:#FFC857;
+
   --radius:18px; --shadow-1:0 6px 14px rgba(0,0,0,.16); --shadow-2:0 14px 32px rgba(0,0,0,.26);
   --maxw:1120px; --tr:260ms cubic-bezier(.2,.7,.2,1);
 }
@@ -21,17 +31,18 @@
 /* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;background:var(--blue-bg);color:var(--blue-text);line-height:1.65}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--blue-text);line-height:1.65;background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2))}
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
-.section{padding:64px 0}
-@media (max-width:820px){.section{padding:42px 0}}
+.section{padding:56px 0; background:transparent}
+@media (max-width:820px){.section{padding:40px 0}}
 
-/* Seções (alternância) */
-.section.blue{background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2)); color:var(--blue-text)}
-.section.white{background:var(--white); color:var(--ink)}
-.section.white .lead{color:var(--ink-muted)}
-.section.blue  .lead{color:var(--blue-muted)}
+/* TODA seção tem fundo azul — inclusive .white */
+.section.blue, .section.white{
+  background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2)) !important;
+  color:var(--blue-text);
+}
+.lead{color:var(--blue-muted)}
 
 /* Títulos */
 h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
@@ -46,18 +57,13 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .card-white{
   background:var(--white); color:var(--ink);
   border:1px solid var(--white-stroke); border-radius:20px; padding:20px;
-  box-shadow:0 10px 24px rgba(16,38,84,.12), 0 18px 36px rgba(16,38,84,.08);
+  box-shadow:0 18px 36px rgba(12,33,76,.25), 0 8px 20px rgba(12,33,76,.18);
 }
 .card-blue{
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)), #0E1C2E;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02)), #103062;
   color:var(--blue-text);
   border:1px solid var(--blue-stroke); border-radius:18px; padding:20px;
   box-shadow:var(--shadow-1),var(--shadow-2);
-}
-
-/* Destaque extra do card branco quando sobre fundo azul */
-.section.blue .card-white{
-  box-shadow:0 18px 36px rgba(0,0,0,.35), 0 6px 16px rgba(0,0,0,.28);
 }
 
 /* Listas */
@@ -66,7 +72,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   padding:12px 16px;border-radius:14px;background:var(--chip);border:1px solid #E9EEF7
 }
 .card-blue .list li{
-  padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18)
+  padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22)
 }
 .list li+li{margin-top:10px}
 
@@ -82,7 +88,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
 .card-white .btn-ghost{background:transparent;border:1px solid var(--ink);color:var(--ink);opacity:.95}
 .card-white .btn-ghost:hover{opacity:1}
-.card-blue .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.8);color:var(--blue-text);opacity:.95}
+.card-blue .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.85);color:var(--blue-text);opacity:.95}
 .card-blue .btn-ghost:hover{opacity:1}
 .btn-block{width:100%}
 
@@ -108,7 +114,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .slide .who{display:flex;align-items:center;gap:10px;margin-top:10px}
 .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45)}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5)}
 .dot.active{background:#fff;transform:scale(1.1)}
 
 /* Checkout */
@@ -136,7 +142,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
-<!-- HERO (Azul sem card) -->
+<!-- HERO -->
 <header class="section blue">
   <div class="container">
     <h1 data-anim>Manual do Aprovado</h1>
@@ -144,7 +150,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </header>
 
-<!-- Detalhes do produto (Azul → Card Branco) -->
+<!-- Detalhes (azul → card branco) -->
 <section class="section blue">
   <div class="container">
     <div class="card-white justify" data-anim>
@@ -154,11 +160,11 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- Pra quem é (Branco → Card Azul) -->
-<section class="section white">
+<!-- Pra quem é (azul → card branco) -->
+<section class="section blue">
   <div class="container">
     <h2 data-anim>Pra quem é o Manual do Aprovado?</h2>
-    <div class="card-blue justify" data-anim>
+    <div class="card-white justify" data-anim>
       <ul class="list">
         <li>Pra quem estuda há mais de 1 ano e ainda não passou em nada.</li>
         <li>Pra quem se sente perdido e sem direção nos estudos.</li>
@@ -169,7 +175,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- O que você vai aprender? (Azul → Card Branco + amostra) -->
+<!-- O que você vai aprender? (azul → card branco + amostra) -->
 <section class="section blue">
   <div class="container">
     <h2 data-anim>O que você vai aprender?</h2>
@@ -196,18 +202,18 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- Quem elaborou (Branco → Card Azul) -->
-<section class="section white">
+<!-- Quem elaborou (azul → card branco) -->
+<section class="section blue">
   <div class="container">
     <h2 data-anim>Quem elaborou este material</h2>
-    <div class="card-blue justify" data-anim>
+    <div class="card-white justify" data-anim>
       <p class="lead">Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás, que juntos acumulam mais de <strong>15 aprovações</strong> em concursos públicos, incluindo colocações em primeiro lugar.</p>
       <p class="lead">Tudo aquilo que levamos anos para aprender na marra, errando e acertando, reunimos aqui de forma clara e aplicada. Assim, você evita os mesmos erros, economiza anos de estudo e aumenta muito suas chances de passar no próximo concurso.</p>
     </div>
   </div>
 </section>
 
-<!-- Como funciona? (Azul → Cards Brancos centralizados) -->
+<!-- Como funciona? (azul → cards brancos centrados) -->
 <section class="section blue">
   <div class="container">
     <h2 class="center" data-anim>Como funciona?</h2>
@@ -219,11 +225,11 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- O que falam (Branco → Card Azul, vitrine horizontal com dots) -->
-<section class="section white">
+<!-- Depoimentos (azul → card branco, vitrine horizontal com dots) -->
+<section class="section blue">
   <div class="container">
     <h2 data-anim>O que falam sobre o Manual do Aprovado</h2>
-    <div class="card-blue carousel" data-anim aria-roledescription="carrossel" aria-label="Depoimentos de alunos">
+    <div class="card-white carousel" data-anim aria-roledescription="carrossel" aria-label="Depoimentos de alunos">
       <div class="track" id="track" role="group">
         <article class="slide" aria-label="Depoimento 1 de 4">
           <p class="justify">“Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo e subi nas questões.”</p>
@@ -249,7 +255,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- Checkout (Azul → Card Branco) -->
+<!-- Checkout (azul → card branco) -->
 <section id="checkout" class="section blue">
   <div class="container">
     <div class="card-white" data-anim>
@@ -267,8 +273,8 @@ h1,h2,p,li{overflow-wrap:anywhere}
 </section>
 
 <!-- WhatsApp flutuante (só no checkout) -->
-<div class="float-wa" id="waFloat" aria-hidden="true">
-  <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
+<div class="float-wa" id="waFloat2" aria-hidden="true">
+  <a class="wa-btn" id="waLink2" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
 <script>
@@ -278,12 +284,12 @@ document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
 /* WA flutuante só no checkout */
 const checkout=document.getElementById('checkout');
-const waFloat=document.getElementById('waFloat');
-const waLink=document.getElementById('waLink');
-const askBtn=document.getElementById('askBtn');
-const waObs=new IntersectionObserver(es=>es.forEach(e=>waFloat.classList.toggle('visible',e.isIntersecting)),{threshold:.25});
-waObs.observe(checkout);
-askBtn?.addEventListener('click',()=>window.open(waLink.href,'_blank','noopener'));
+function setupWA(floatId, linkId, btnId){
+  const f=document.getElementById(floatId), l=document.getElementById(linkId), b=document.getElementById(btnId);
+  const o=new IntersectionObserver(es=>es.forEach(e=>f.classList.toggle('visible',e.isIntersecting)),{threshold:.25});
+  o.observe(checkout); b?.addEventListener('click',()=>window.open(l.href,'_blank','noopener'));
+}
+setupWA('waFloat','waLink','askBtn'); setupWA('waFloat2','waLink2','askBtn');
 
 /* Prefetch do link de pagamento quando checkout entra na tela */
 const pfObs=new IntersectionObserver(es=>{
