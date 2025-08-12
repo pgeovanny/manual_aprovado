@@ -14,13 +14,20 @@
   --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6; --chip:#F6F8FD;
   /* Acentos */
   --brand:#2F79FF; --brand-2:#2EC8FF; --accent:#25D366; --warn:#FFC857;
-  --radius:18px; --shadow-1:0 6px 14px rgba(0,0,0,.16); --shadow-2:0 14px 32px rgba(0,0,0,.26);
+  --radius:22px; --shadow-1:0 6px 14px rgba(0,0,0,.16); --shadow-2:0 14px 32px rgba(0,0,0,.26);
   --maxw:1120px; --tr:260ms cubic-bezier(.2,.7,.2,1);
 }
+
 /* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--blue-text);line-height:1.65;background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2))}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  color:var(--blue-text);
+  line-height:1.65;
+  background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2));
+}
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 .section{padding:56px 0;background:transparent}
@@ -30,33 +37,40 @@ a{color:var(--brand);text-decoration:none}
 /* Títulos */
 h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
 h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 10px}
-.sub{font-size:clamp(1rem,.8rem+1vw,1.35rem);margin-top:8px;opacity:.95}
+.sub{font-size:clamp(.95rem,.75rem+1vw,1.2rem);margin-top:8px;opacity:.95}
 
 /* Texto justificado e sem cortes */
 .justify,.justify p,.justify li{text-align:justify}
 h1,h2,p,li{overflow-wrap:anywhere}
 
-/* CONTRASTE — escopo correto de .lead */
+/* Escopo correto do .lead (nunca clarear texto no card branco) */
 .section.blue .lead{color:var(--blue-muted)}
-.card-white .lead{color:var(--ink-muted)}
-
-/* Cards (acabamento premium) */
+/* Cards */
 .card-white{
   background:var(--white);
   color:var(--ink);
   border:1px solid var(--white-stroke);
-  border-radius:22px;
+  border-radius:var(--radius);
   padding:22px;
   box-shadow:
     0 18px 36px rgba(12,33,76,.22),
     0 8px 20px rgba(12,33,76,.12),
-    inset 0 1px 0 rgba(9,30,66,.06); /* divisor interno suave */
+    inset 0 1px 0 rgba(9,30,66,.06);
+  max-width:72ch;
 }
-/* Garantia de contraste DENTRO do card branco */
-.card-white :is(p,li,span,small,strong){color:var(--ink)}
-.card-white a{color:#1B56FF}
-.card-white .sectioned > *{color:var(--ink)}
+.section.blue .card-white{ /* destaca quando sobre azul */
+  box-shadow:
+    0 22px 44px rgba(0,0,0,.28),
+    0 10px 24px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(9,30,66,.06);
+}
+/* GARANTIA DE CONTRASTE NO CARD BRANCO */
+.card-white :is(p,li,span,small,strong){color:var(--ink) !important}
+.card-white .lead{color:var(--ink-muted) !important}
+.card-white a{color:#1B56FF !important}
+.card-white .btn-ghost{color:var(--ink) !important;border-color:var(--ink) !important}
 
+/* Cartão azul (usado em depoimentos somente se quiser) */
 .card-blue{
   background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02)), #103062;
   color:var(--blue-text);
@@ -66,38 +80,31 @@ h1,h2,p,li{overflow-wrap:anywhere}
   box-shadow:var(--shadow-1),var(--shadow-2);
 }
 
-/* “Pílulas” internas para organizar texto longo */
+/* “Pílulas” internas pra organizar textos longos */
 .sectioned{display:grid;gap:12px;max-width:72ch}
 .sectioned > *{
-  background:#F8FAFF;border:1px solid #DFE8F5;border-radius:14px;padding:12px 14px;margin:0;
+  background:#F8FAFF;border:1px solid #DFE8F5;border-radius:14px;padding:12px 14px;margin:0;color:var(--ink) !important;
 }
 
 /* Listas */
 .list{list-style:none;margin:0;padding:0;max-width:72ch}
-.card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7}
-.card-blue  .list li{padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22)}
+.card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7;color:var(--ink) !important}
 .list li+li{margin-top:10px}
-
-/* Grid */
-.grid{display:grid;gap:22px}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (max-width:980px){.grid-2{grid-template-columns:1fr}}
 
 /* Botões */
 .btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
 .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#07101F;box-shadow:0 14px 32px rgba(47,121,255,.35),0 6px 16px rgba(46,200,255,.25)}
 .btn-primary:hover{transform:translateY(-1px)}
 .btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
-.card-white .btn-ghost{background:transparent;border:1px solid var(--ink);color:var(--ink);opacity:.95}
-.card-blue  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.85);color:var(--blue-text);opacity:.95}
+.btn-ghost{background:transparent;border:1px solid currentColor;opacity:.95}
 .btn-ghost:hover{opacity:1}
 .btn-block{width:100%}
 
-/* Como funciona — central */
+/* Como funciona — centralizado */
 .center{text-align:center}
 .steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,280px));justify-content:center;justify-items:center;text-align:center}
 @media (max-width:980px){.steps{grid-template-columns:1fr}}
-.step{padding:20px;border-radius:18px;border:1px solid var(--white-stroke);background:#fff;box-shadow:0 8px 22px rgba(16,38,84,.12);width:100%}
+.step{padding:20px;border-radius:18px;border:1px solid var(--white-stroke);background:#fff;box-shadow:0 8px 22px rgba(16,38,84,.12);width:100%;max-width:360px}
 .num{width:46px;height:46px;border-radius:999px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900;box-shadow:0 6px 16px rgba(47,121,255,.35)}
 .step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747}
 .step p{margin:0;color:#4a5d7b}
@@ -128,19 +135,17 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .now{font-size:2.45rem;font-weight:900;letter-spacing:-.02em}
 .ribbon{display:inline-block;background:linear-gradient(135deg,var(--warn),#FFD77E);color:#1B1300;padding:6px 10px;border-radius:10px;font-weight:900}
 
-/* WhatsApp flutuante */
+/* WhatsApp flutuante (só no checkout) */
 .float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr),transform var(--tr)}
 .float-wa.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:var(--accent);color:#0C2A18;font-weight:900;border:0;box-shadow:0 12px 26px rgba(0,0,0,.4);cursor:pointer}
 
-/* Entradas e acessibilidade */
+/* Entradas + acessibilidade */
 [data-anim]{opacity:0;transform:translateY(14px);transition:opacity .55s var(--tr),transform .55s var(--tr)}
 .in{opacity:1;transform:translateY(0)}
-@media (prefers-reduced-motion:reduce){
-  *{transition:none !important; animation:none !important}
-}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 @media (max-width:520px){.btn{padding:16px 18px}}
-.card-white:hover,.card-blue:hover{transform:translateY(-1px)}
+.card-white:hover{transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -292,35 +297,31 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- WhatsApp flutuante (só no checkout) -->
-<div class="float-wa" id="waFloat2" aria-hidden="true">
-  <a class="wa-btn" id="waLink2" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
-</div>
-
 <script>
 /* Entradas */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
-/* WA flutuante só no checkout */
+/* WhatsApp flutuante só no checkout */
 const checkout=document.getElementById('checkout');
-function setupWA(floatId, linkId, btnId){
-  const f=document.getElementById(floatId), l=document.getElementById(linkId), b=document.getElementById(btnId);
-  const o=new IntersectionObserver(es=>es.forEach(e=>f.classList.toggle('visible',e.isIntersecting)),{threshold:.25});
-  o.observe(checkout); b?.addEventListener('click',()=>window.open(l.href,'_blank','noopener'));
-}
-setupWA('waFloat','waLink','askBtn'); setupWA('waFloat2','waLink2','askBtn');
+const waFloat=document.getElementById('waFloat');
+const waLink=document.getElementById('waLink');
+const askBtn=document.getElementById('askBtn');
+new IntersectionObserver(es=>es.forEach(e=>waFloat.classList.toggle('visible',e.isIntersecting)),{threshold:.25}).observe(checkout);
+askBtn?.addEventListener('click',()=>window.open(waLink.href,'_blank','noopener'));
 
-/* Prefetch pagamento */
+/* Prefetch do link de pagamento quando checkout entra */
 new IntersectionObserver(es=>{
   if(es.some(e=>e.isIntersecting)){
     const href=document.getElementById('buyBtn')?.getAttribute('href');
-    if(href&&!document.getElementById('pfLink')){const l=document.createElement('link');l.id='pfLink';l.rel='prefetch';l.href=href;document.head.appendChild(l);}
+    if(href&&!document.getElementById('pfLink')){
+      const l=document.createElement('link'); l.id='pfLink'; l.rel='prefetch'; l.href=href; document.head.appendChild(l);
+    }
     this && this.disconnect && this.disconnect();
   }
 },{threshold:.2}).observe(checkout);
 
-/* Vitrine + dots + abrir ao hover/toque */
+/* Carrossel + dots + abrir ao hover/toque */
 (function(){
   const track=document.getElementById('track');
   const dots=document.getElementById('dots').children;
@@ -360,7 +361,7 @@ new IntersectionObserver(es=>{
   setActive();
 })();
 
-/* Countdown 10 minutos */
+/* Countdown 10 minutos (evergreen) */
 (function(){
   const el=document.getElementById('countdown'); if(!el)return;
   const KEY='ma_deadline_10m'; let d=localStorage.getItem(KEY);
