@@ -8,235 +8,154 @@
 <style>
 :root{
   --blue-1:#0E2B66; --blue-2:#0A1F4A;
-  --blue-text:#F1F6FF; --blue-muted:#C7D6FF;
-  --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6;
-  --brand:#2F79FF; --brand-2:#2EC8FF;
-  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC; /* CTA escuro */
+  --white:#fff; --ink:#182542; --ink-2:#415474;
+  --b-stroke:#E7EEF8; --b-soft:#F7FAFF;
+  --cta1:#1E3FAE; --cta2:#0E6ACB;   /* gradiente escuro */
   --accent:#25D366; --warn:#FFC857;
-  --radius:22px; --maxw:1160px; --tr:260ms cubic-bezier(.2,.7,.2,1);
+  --maxw:1160px; --radius:18px; --tr:240ms cubic-bezier(.2,.7,.2,1);
 }
 
-/* Base */
+/* base */
 *{box-sizing:border-box} html,body{height:100%}
 body{
-  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-  color:var(--blue-text); line-height:1.65;
+  margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  color:#F2F6FF; line-height:1.65;
   background:
-    radial-gradient(1200px 800px at 16% -10%, rgba(60,110,220,.25), transparent 65%),
-    radial-gradient(900px 700px at 82% 112%, rgba(6,22,60,.55), transparent 58%),
+    radial-gradient(1000px 700px at 15% -10%, rgba(70,120,230,.18), transparent 60%),
+    radial-gradient(900px 700px at 85% 115%, rgba(7,20,60,.45), transparent 55%),
     linear-gradient(180deg,var(--blue-1),var(--blue-2));
 }
-a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
-.section{padding:64px 0}
-@media (max-width:980px){.section{padding:44px 0}}
-h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
-h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 10px}
-.sub{font-size:clamp(.95rem,.75rem+1vw,1.15rem);margin-top:10px;opacity:.95}
-.justify,.justify p,.justify li{text-align:justify}
-h1,h2,p,li{overflow-wrap:anywhere}
+.section{padding:56px 0}
+h1{margin:0 0 6px;font-size:clamp(2rem,1.2rem+3vw,3.2rem);font-weight:900}
+h2{margin:0 0 14px;font-size:clamp(1.5rem,1rem+1.6vw,2rem);font-weight:900}
+.sub{opacity:.95;margin:6px 0 0}
 
-/* ===== HEADER novo (glass, logos, premium) ===== */
-.header{
-  position:sticky; top:0; z-index:100;
-  backdrop-filter:saturate(1.2) blur(10px);
-  background:rgba(8,20,50,.55);
+/* HEADER minimal */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,18,48,.55);backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(255,255,255,.12);
 }
-.nav{
-  display:flex;align-items:center;gap:18px;min-height:68px;
-}
-.brand-card{
-  display:flex;align-items:center;gap:12px;
-  padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:0 8px 24px rgba(5,10,25,.25), inset 0 1px 0 rgba(255,255,255,.08);
-}
-.logo-pill{
-  display:flex;align-items:center;justify-content:center;
-  height:40px;padding:6px 10px;border-radius:12px;
-  background:#fff;border:1px solid #E8EEFA;
-  box-shadow:0 6px 14px rgba(10,25,60,.25), inset 0 1px 0 rgba(9,30,66,.06);
-}
-.logo-pill img{
-  max-height:28px; display:block; object-fit:contain; aspect-ratio:auto;
-}
-.brand-and{
-  font-weight:900;color:#fff;opacity:.9;padding:0 2px;
-}
+.header-row{display:flex;align-items:center;gap:14px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{height:28px;width:auto;object-fit:contain;border-radius:8px;background:#fff;padding:4px 6px;border:1px solid #E8EEFA}
+.header-title{font-weight:800;letter-spacing:.2px}
+.header-title small{opacity:.85;font-weight:700}
 
-/* ===== Cards brancos premium ===== */
-.card-white{
-  --card-bg: linear-gradient(180deg,#FFFFFF 0%, #FAFCFF 100%);
-  background:var(--card-bg); color:var(--ink);
-  border:1px solid var(--white-stroke);
-  border-radius:var(--radius); padding:22px;
-  box-shadow:0 26px 52px rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.12), inset 0 1px 0 rgba(9,30,66,.06);
-  max-width:72ch;
+/* CARD branco premium (limpo) */
+.card{
+  background:var(--white); color:var(--ink);
+  border:1px solid var(--b-stroke); border-radius:22px; padding:22px;
+  box-shadow:0 12px 24px rgba(10,20,40,.15);
 }
-.card-white :is(p,li,span,small,strong){color:var(--ink) !important}
-.card-white .lead{color:var(--ink-muted) !important}
+.card p{color:var(--ink-2)}
+.split>*{margin:0;background:var(--b-soft);border:1px solid var(--b-stroke);border-radius:14px;padding:12px 14px}
+.split>*+*{margin-top:10px}
 
-/* Divisórias internas (acabamento) */
-.section-split{max-width:72ch}
-.section-split > *{
-  margin:0;padding:12px 14px;border-radius:14px;background:#F8FAFF;border:1px solid #DFE8F5;
-  box-shadow:inset 0 1px 0 rgba(9,30,66,.06);
-}
-.section-split > * + *{margin-top:10px}
-
-/* Listas */
-.list{list-style:none;margin:0;padding:0;max-width:72ch}
-.card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7;color:var(--ink) !important}
+/* lista */
+.list{list-style:none;margin:0;padding:0}
+.list li{background:#FBFDFF;border:1px solid var(--b-stroke);border-radius:14px;padding:12px 14px;color:var(--ink)}
 .list li+li{margin-top:10px}
 
-/* ===== Botões ===== */
-.btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
-/* CTA principal — gradiente escuro + texto branco visível SEMPRE */
+/* CTA */
+.btn{appearance:none;border:0;cursor:pointer;border-radius:14px;padding:16px 20px;font-weight:900;display:inline-flex;justify-content:center;align-items:center;gap:10px;transition:transform var(--tr),box-shadow var(--tr),opacity var(--tr)}
 .btn-primary{
-  background:linear-gradient(135deg,var(--brand-dark1),var(--brand-dark2));
-  color:#FFFFFF !important; text-shadow:0 1px 0 rgba(0,0,0,.25);
-  min-height:56px;
-  box-shadow:0 16px 36px rgba(20,70,180,.35),0 8px 18px rgba(14,118,204,.22);
+  background:linear-gradient(135deg,var(--cta1),var(--cta2));
+  color:#fff !important; text-shadow:0 1px 0 rgba(0,0,0,.25);
+  box-shadow:0 12px 24px rgba(20,60,160,.30);
 }
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 20px 40px rgba(20,70,180,.42),0 10px 22px rgba(14,118,204,.28)}
-.btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
-.btn-ghost{background:transparent;border:1px solid #C9D6EF;color:#243a63}
-.btn-ghost:hover{background:#F5F8FF;border-color:#9FB3DD}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 30px rgba(20,60,160,.36)}
+.btn-ghost{background:transparent;border:1px solid #C9D6EF;color:#29406A}
+.btn-ghost:hover{background:#F4F7FF}
 .btn-block{width:100%}
 
-/* ===== Como funciona ===== */
-.center{text-align:center}
-.steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,300px));justify-content:center;justify-items:center;text-align:center}
-@media (max-width:980px){.steps{grid-template-columns:1fr}}
-.step{padding:20px;border-radius:18px;border:1px solid var(--white-stroke);background:#fff;box-shadow:0 8px 22px rgba(16,38,84,.12);width:100%}
-.num{width:46px;height:46px;border-radius:999px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900;box-shadow:0 6px 16px rgba(47,121,255,.35)}
-.step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747}
-.step p{margin:0;color:#4a5d7b}
+/* COMO FUNCIONA */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:920px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--b-stroke);border-radius:16px;padding:18px;box-shadow:0 8px 18px rgba(16,38,84,.12);text-align:center}
+.step .n{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;background:#2F79FF;color:#fff;font-weight:900}
 
-/* ===== Depoimentos ===== */
-.carousel{position:relative}
-.carousel::before,.carousel::after{
-  content:""; position:absolute; top:14px; bottom:46px; width:28px; z-index:3; pointer-events:none;
-  background:linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
-}
-.carousel::before{left:10px}
-.carousel::after{right:10px; transform:scaleX(-1)}
-.track{
-  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 8px 12px 8px;
-  -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:#C4D2F5 transparent;
-}
-.track::-webkit-scrollbar{height:10px}
-.track::-webkit-scrollbar-thumb{background:#C4D2F5;border-radius:8px}
+/* DEPOIMENTOS – sem overlay escuro */
+.carousel{padding:0}
+.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 6px 10px 6px;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{height:8px}
+.track::-webkit-scrollbar-thumb{background:#D4DEF4;border-radius:8px}
 .slide{scroll-snap-align:start;min-width:320px;max-width:420px}
 @media (max-width:720px){.slide{min-width:86%;max-width:none}}
 .tcard{
-  background:linear-gradient(180deg,#1E3B73,#162E57);
-  border:1px solid rgba(255,255,255,.28);
-  border-radius:22px; padding:18px 18px 16px 18px;
-  box-shadow:0 16px 30px rgba(8,14,28,.35), inset 0 1px 0 rgba(255,255,255,.12);
-  cursor:pointer; transition:transform .28s var(--tr), box-shadow .28s var(--tr), border-color .28s var(--tr), background .28s var(--tr);
+  background:linear-gradient(180deg,#1F3F7B,#163563); color:#fff;
+  border:1px solid rgba(255,255,255,.25); border-radius:18px; padding:16px;
+  box-shadow:0 12px 24px rgba(7,12,24,.35);
 }
-/* TUDO branco aqui dentro */
-.tcard *{color:#FFFFFF !important}
-.tcard:hover,.tcard.open{ transform:translateY(-2px) scale(1.01); box-shadow:0 24px 46px rgba(8,14,28,.45); border-color:rgba(255,255,255,.48); background:linear-gradient(180deg,#244A8E,#173464)}
 .thead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
-.tmeta strong{display:block;line-height:1.1}
-.tmeta .area{font-size:.9rem;opacity:.9}
-.tText{margin:8px 0 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.tcard.open .tText{-webkit-line-clamp:unset;overflow:visible}
-.dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
-.dot{width:8px;height:8px;border-radius:50%;background:#C8D6F0}
-.dot.active{background:#2F79FF;transform:scale(1.1)}
+.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#2F79FF;color:#fff;font-weight:900}
+.tmeta strong{display:block}
+.tmeta small{opacity:.9}
+.ttext{margin:6px 0 0 0}
 
-/* ===== Checkout ===== */
-#checkout .card-white{max-width:none}
-.headline{
-  font-weight:900; margin:12px 0 8px; position:relative; display:inline-block;
-  background:linear-gradient(0deg,rgba(47,121,255,.23) 0, rgba(47,121,255,0) 60%);
-  padding-bottom:4px; border-radius:6px;
-}
-/* chip amarelo fora de qualquer fundo azul */
-.ribbon-chip{
-  display:inline-block;background:linear-gradient(135deg,#FFD76A,#FFC23A);color:#1B1300;
-  padding:6px 10px;border-radius:12px;font-weight:900;border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 6px 14px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.55);
-}
-.checkout-grid{display:grid; gap:22px; align-items:start; grid-template-columns:1fr}
-@media (min-width:980px){.checkout-grid{grid-template-columns:1.2fr .8fr}}
-.price-wrap{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
-.old{text-decoration:line-through;color:#5b6f8f}
-.now{font-size:clamp(2rem,1.5rem+1.5vw,2.7rem);font-weight:900;letter-spacing:-.02em}
-.badge-time{
-  display:inline-flex;align-items:center;gap:8px;background:#0E2F74;color:#E6F0FF;border:1px solid #1B4DAA;
-  padding:6px 10px;border-radius:999px;font-weight:800;font-size:.9rem
-}
-.badge-time strong{font-weight:900}
-.cta{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.badges{display:flex;gap:10px;flex-wrap:wrap;opacity:.9}
-.badge{padding:6px 10px;border-radius:999px;border:1px solid #E1E8F6;background:#F7FAFF;color:#2A3E63;font-weight:700;font-size:.86rem}
+/* CHECKOUT */
+.checkout h3{margin:10px 0 6px}
+.ribbon{display:inline-block;background:linear-gradient(135deg,#FFD76A,#FFC23A);color:#1B1300;padding:6px 10px;border-radius:12px;font-weight:900;border:1px solid rgba(0,0,0,.05)}
+.price-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:8px 0 12px}
+.old{color:#6F7E99;text-decoration:line-through}
+.now{color:#0E2B66;font-size:2.2rem;font-weight:900;letter-spacing:-.02em}
+.timer{display:inline-flex;align-items:center;gap:8px;background:#0E2F74;color:#E6F0FF;border:1px solid #1B4DAA;padding:6px 10px;border-radius:999px;font-weight:800}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.badge{background:#F7FAFF;border:1px solid var(--b-stroke);border-radius:999px;padding:6px 10px;color:#2A3E63;font-weight:700;font-size:.88rem}
 
-/* WA flutuante */
-.float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr),transform var(--tr)}
-.float-wa.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:var(--accent);color:#0C2A18;font-weight:900;border:0;box-shadow:0 12px 26px rgba(0,0,0,.4);cursor:pointer}
+/* helpers */
+.text-dark{color:var(--ink)}
+.lead{color:var(--ink-2)}
+.justify{text-align:justify}
 
-/* Entradas & responsivo */
-[data-anim]{opacity:0;transform:translateY(14px);transition:opacity .55s var(--tr),transform .55s var(--tr)}
-.in{opacity:1;transform:translateY(0)}
-@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
-@media (max-width:720px){.card-white,.tcard{border-radius:18px} .steps{gap:14px}}
+/* spacing mobile */
+@media (max-width:680px){
+  .section{padding:44px 0}
+  .logo{height:26px}
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="container">
-    <nav class="nav">
-      <div class="brand-card">
-        <div class="logo-pill">
-          <img src="https://i.imgur.com/JagPjW3.jpeg" alt="PG Concursos" loading="eager" decoding="async"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-          <span class="logo-fallback" style="display:none;font-weight:900;color:#123">PG Concursos</span>
-        </div>
-        <span class="brand-and">&amp;</span>
-        <div class="logo-pill">
-          <img src="https://i.imgur.com/ctiOByT.jpeg" alt="Dominando o Edital" loading="eager" decoding="async"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-          <span class="logo-fallback" style="display:none;font-weight:900;color:#123">Dominando o Edital</span>
-        </div>
-      </div>
-    </nav>
+<!-- HEADER LIMPO -->
+<header class="site-header">
+  <div class="container header-row">
+    <div class="brand">
+      <img class="logo" src="https://i.imgur.com/JagPjW3.jpeg" alt="Logo PG Concursos">
+      <span class="header-title">PG Concursos</span>
+      <span>&nbsp;&amp;&nbsp;</span>
+      <img class="logo" src="https://i.imgur.com/ctiOByT.jpeg" alt="Logo Dominando o Edital">
+      <span class="header-title"><small>Dominando o Edital</small></span>
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="section">
   <div class="container">
-    <h1 data-anim>Manual do Aprovado</h1>
-    <p class="sub" data-anim>O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.</p>
+    <h1>Manual do Aprovado</h1>
+    <p class="sub">O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.</p>
   </div>
 </section>
 
-<!-- Detalhes -->
+<!-- DETALHES -->
 <section class="section">
   <div class="container">
-    <div class="card-white justify" data-anim>
-      <div class="section-split">
-        <p class="lead">Você já estudou por meses ou até anos para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, sem método ou pulando de método em método, estudando sem organização e <strong>PERDENDO MUITO TEMPO</strong> com coisas que não trazem resultado.</p>
-        <p class="lead">O <strong>Manual do Aprovado</strong> foi criado justamente para mudar essa realidade. Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente o que fazer desde o primeiro dia de estudo até a aprovação.</p>
+    <div class="card">
+      <div class="split">
+        <p class="lead justify">Você já estudou por meses ou até anos para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, sem método ou pulando de método em método, estudando sem organização e <strong>PERDENDO MUITO TEMPO</strong> com coisas que não trazem resultado.</p>
+        <p class="lead justify">O <strong>Manual do Aprovado</strong> foi criado justamente para mudar essa realidade. Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente o que fazer desde o primeiro dia de estudo até a aprovação.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pra quem é -->
+<!-- PRA QUEM É -->
 <section class="section">
   <div class="container">
-    <h2 data-anim>Pra quem é o Manual do Aprovado?</h2>
-    <div class="card-white justify" data-anim>
+    <h2>Pra quem é o Manual do Aprovado?</h2>
+    <div class="card">
       <ul class="list">
         <li>Pra quem estuda há mais de 1 ano e ainda não passou em nada.</li>
         <li>Pra quem se sente perdido e sem direção nos estudos.</li>
@@ -247,11 +166,11 @@ h1,h2,p,li{overflow-wrap:anywhere}
   </div>
 </section>
 
-<!-- O que você vai aprender? -->
+<!-- O QUE VAI APRENDER -->
 <section class="section">
   <div class="container">
-    <h2 data-anim>O que você vai aprender?</h2>
-    <div class="card-white justify" data-anim>
+    <h2>O que você vai aprender?</h2>
+    <div class="card">
       <ul class="list">
         <li>Como escolher o concurso-alvo</li>
         <li>Quantas horas devo estudar por dia?</li>
@@ -267,161 +186,126 @@ h1,h2,p,li{overflow-wrap:anywhere}
         <li>Como estudar na reta final</li>
         <li>Estratégias para o dia da prova</li>
       </ul>
-      <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-ghost" href="PLACEHOLDER_AMOSTRA_URL" target="_blank" rel="noopener">Ver amostra</a>
-      </div>
+      <div style="margin-top:12px"><a class="btn btn-ghost" target="_blank" rel="noopener" href="PLACEHOLDER_AMOSTRA_URL">Ver amostra</a></div>
     </div>
   </div>
 </section>
 
-<!-- Quem elaborou -->
+<!-- QUEM ELABOROU -->
 <section class="section">
   <div class="container">
-    <h2 data-anim>Quem elaborou este material</h2>
-    <div class="card-white justify" data-anim>
-      <div class="section-split">
-        <p class="lead">Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás, que juntos acumulam mais de <strong>15 aprovações</strong> em concursos públicos, incluindo colocações em primeiro lugar.</p>
-        <p class="lead">Tudo aquilo que levamos anos para aprender na marra, errando e acertando, reunimos aqui de forma clara e aplicada. Assim, você evita os mesmos erros, economiza anos de estudo e aumenta muito suas chances de passar no próximo concurso.</p>
+    <h2>Quem elaborou este material</h2>
+    <div class="card">
+      <div class="split">
+        <p class="lead justify">Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás, que juntos acumulam mais de <strong>15 aprovações</strong> em concursos públicos, incluindo colocações em primeiro lugar.</p>
+        <p class="lead justify">Tudo aquilo que levamos anos para aprender na marra, errando e acertando, reunimos aqui de forma clara e aplicada. Assim, você evita os mesmos erros, economiza anos de estudo e aumenta muito suas chances de passar no próximo concurso.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Como funciona -->
+<!-- COMO FUNCIONA -->
 <section class="section">
   <div class="container">
-    <h2 class="center" data-anim>Como funciona?</h2>
-    <div class="steps" data-anim>
-      <div class="step"><div class="num">1</div><h4>Acesso Imediato</h4><p>Receba o Manual do Aprovado em PDF logo após a confirmação da compra.</p></div>
-      <div class="step"><div class="num">2</div><h4>Aplique o Método</h4><p>Siga o passo a passo detalhado para organizar seus estudos e rotina.</p></div>
-      <div class="step"><div class="num">3</div><h4>Acelere seus Resultados</h4><p>Comece a ver a diferença na sua performance e aproximação da aprovação.</p></div>
+    <h2 style="text-align:center">Como funciona?</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4 class="text-dark">Acesso Imediato</h4><p class="text-dark">Receba o Manual do Aprovado em PDF logo após a confirmação da compra.</p></div>
+      <div class="step"><div class="n">2</div><h4 class="text-dark">Aplique o Método</h4><p class="text-dark">Siga o passo a passo detalhado para organizar seus estudos e rotina.</p></div>
+      <div class="step"><div class="n">3</div><h4 class="text-dark">Acelere seus Resultados</h4><p class="text-dark">Comece a ver a diferença na sua performance e aproximação da aprovação.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Depoimentos -->
+<!-- DEPOIMENTOS -->
 <section class="section">
   <div class="container">
-    <h2 data-anim>O que falam sobre o Manual do Aprovado</h2>
-    <div class="card-white carousel" data-anim aria-roledescription="carrossel" aria-label="Depoimentos de alunos">
-      <div class="track" id="track" role="group">
-        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">M</div><div class="tmeta"><strong>Mariana</strong><span class="area">Área administrativa</span></div></div><p class="tText">Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo, organizei revisões e comecei a subir nas questões. O que mais gostei foi entender exatamente o que fazer no pré e no pós-edital sem perder tempo.</p></div></article>
-        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">D</div><div class="tmeta"><strong>Diego</strong><span class="area">Tribunais</span></div></div><p class="tText">Eu não sabia revisar. O passo a passo tirou a dúvida diária do “o que estudar hoje”. Usei o ciclo, revisões e lei seca como o manual orienta e destravei. Hoje acompanho minha evolução sem me sentir perdido.</p></div></article>
-        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">S</div><div class="tmeta"><strong>Sofia</strong><span class="area">Carreiras policiais</span></div></div><p class="tText">Aprendi a combinar PDF, videoaula e lei seca sem desperdício. Parei de fazer resumos enormes e passei a revisar com método. Meu rendimento aumentou e a ansiedade diminuiu muito.</p></div></article>
-        <article class="slide"><div class="tcard" tabindex="0"><div class="thead"><div class="avatar">R</div><div class="tmeta"><strong>Rafael</strong><span class="area">Fiscal</span></div></div><p class="tText">Com o plano de pré e pós-edital, parei de recomeçar do zero a cada edital. O manual mostra o ritmo certo, quando acelerar e como fechar a reta final com segurança.</p></div></article>
-      </div>
-      <div class="dots" id="dots" aria-hidden="true">
-        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <h2>O que falam sobre o Manual do Aprovado</h2>
+    <div class="card">
+      <div class="track" id="track">
+        <article class="slide">
+          <div class="tcard">
+            <div class="thead"><div class="avatar">M</div><div class="tmeta"><strong>Mariana</strong><small>Área administrativa</small></div></div>
+            <p class="ttext">Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo, organizei revisões e comecei a subir nas questões. O que mais gostei foi entender exatamente o que fazer no pré e no pós-edital sem perder tempo.</p>
+          </div>
+        </article>
+        <article class="slide">
+          <div class="tcard">
+            <div class="thead"><div class="avatar">D</div><div class="tmeta"><strong>Diego</strong><small>Tribunais</small></div></div>
+            <p class="ttext">Eu não sabia revisar. O passo a passo tirou a dúvida diária do “o que estudar hoje”. Usei o ciclo, revisões e lei seca como o manual orienta e destravei.</p>
+          </div>
+        </article>
+        <article class="slide">
+          <div class="tcard">
+            <div class="thead"><div class="avatar">S</div><div class="tmeta"><strong>Sofia</strong><small>Carreiras policiais</small></div></div>
+            <p class="ttext">Aprendi a combinar PDF, videoaula e lei seca sem desperdício. Parei de fazer resumos enormes e passei a revisar com método.</p>
+          </div>
+        </article>
+        <article class="slide">
+          <div class="tcard">
+            <div class="thead"><div class="avatar">R</div><div class="tmeta"><strong>Rafael</strong><small>Fiscal</small></div></div>
+            <p class="ttext">Com o plano de pré e pós-edital, parei de recomeçar do zero a cada edital. O manual mostra o ritmo certo.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Checkout -->
-<section id="checkout" class="section">
+<!-- CHECKOUT -->
+<section class="section">
   <div class="container">
-    <div class="card-white" data-anim>
-      <div class="checkout-grid">
-        <div>
-          <span class="ribbon-chip">Oferta por tempo limitado</span>
-          <h2 class="headline">Acesse o Manual do Aprovado agora</h2>
-          <p class="lead justify" style="color:var(--ink-muted)">Sua compra 100% segura e garantida. Se tiver dúvidas, fale conosco no WhatsApp antes de finalizar.</p>
+    <div class="card checkout">
+      <span class="ribbon">Oferta por tempo limitado</span>
+      <h2 class="text-dark" style="margin-top:8px">Acesse o Manual do Aprovado agora</h2>
+      <p class="lead">Sua compra 100% segura e garantida. Se tiver dúvidas, fale conosco no WhatsApp antes de finalizar.</p>
 
-          <div class="price-wrap">
-            <div class="old">de R$ 197,00</div>
-            <div class="now">por R$ 97,00</div>
-            <span class="badge-time"><strong>Oferta válida por:</strong> <time id="countdown">10:00</time></span>
-          </div>
+      <div class="price-row">
+        <div class="old">de R$ 197,00</div>
+        <div class="now">por R$ 97,00</div>
+        <div class="timer"><strong>Oferta válida por:</strong> <span id="countdown">10:00</span></div>
+      </div>
 
-          <div class="cta">
-            <a class="btn btn-primary btn-block" id="buyBtn" href="PLACEHOLDER_PAYMENT_URL" target="_blank" rel="noopener">Quero garantir meu Manual agora</a>
-            <button class="btn btn-ghost btn-block" id="askBtn">Ainda tem dúvidas? Fale conosco no WhatsApp</button>
-          </div>
+      <a class="btn btn-primary btn-block" id="buyBtn" href="PLACEHOLDER_PAYMENT_URL" target="_blank" rel="noopener">Quero garantir meu Manual agora</a>
+      <div style="height:10px"></div>
+      <button class="btn btn-ghost btn-block" id="askBtn">Ainda tem dúvidas? Fale conosco no WhatsApp</button>
 
-          <div class="badges" style="margin-top:10px">
-            <div class="badge">Pagamento seguro</div>
-            <div class="badge">Acesso imediato</div>
-            <div class="badge">Garantia</div>
-          </div>
-        </div>
-        <div></div>
+      <div class="badges">
+        <span class="badge">Pagamento seguro</span>
+        <span class="badge">Acesso imediato</span>
+        <span class="badge">Garantia</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WA flutuante -->
-<div class="float-wa" id="waFloat" aria-hidden="true">
-  <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
-</div>
+<!-- WhatsApp flutuante apenas no checkout -->
+<a id="waFloat" class="btn" style="position:fixed;right:16px;bottom:18px;background:var(--accent);color:#0C2A18;font-weight:900;border-radius:999px;padding:14px 16px;box-shadow:0 10px 22px rgba(0,0,0,.35);display:none"
+   href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 
 <script>
-/* Entradas */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+/* WA flutuante quando checkout na tela */
+const checkout = document.querySelector('.checkout');
+const waFloat = document.getElementById('waFloat');
+new IntersectionObserver(es=>es.forEach(e=>waFloat.style.display = e.isIntersecting?'inline-flex':'none'),{threshold:.25}).observe(checkout);
+document.getElementById('askBtn')?.addEventListener('click',()=>waFloat.click());
 
-/* WA flutuante só no checkout */
-const checkout=document.getElementById('checkout');
-const waFloat=document.getElementById('waFloat');
-new IntersectionObserver(es=>es.forEach(e=>waFloat.classList.toggle('visible',e.isIntersecting)),{threshold:.25}).observe(checkout);
-document.getElementById('askBtn')?.addEventListener('click',()=>window.open(document.getElementById('waLink').href,'_blank','noopener'));
-
-/* Prefetch pagamento quando checkout entra na tela */
+/* Prefetch do link de pagamento */
 new IntersectionObserver(es=>{
   if(es.some(e=>e.isIntersecting)){
-    const href=document.getElementById('buyBtn')?.getAttribute('href');
+    const href=document.getElementById('buyBtn')?.href;
     if(href&&!document.getElementById('pfLink')){
       const l=document.createElement('link'); l.id='pfLink'; l.rel='prefetch'; l.href=href; document.head.appendChild(l);
     }
-    this && this.disconnect && this.disconnect();
   }
 },{threshold:.2}).observe(checkout);
 
-/* Carrossel + dots + abrir ao hover/toque */
+/* Countdown sempre 10:00 na abertura */
 (function(){
-  const track=document.getElementById('track');
-  const dots=document.getElementById('dots').children;
-  function setActive(){
-    const slides=[...track.children];
-    const tr=track.getBoundingClientRect();
-    let best=0, bestDelta=Infinity;
-    slides.forEach((s,i)=>{
-      const r=s.getBoundingClientRect();
-      const center=r.left+r.width/2;
-      const delta=Math.abs(center-(tr.left+tr.width/2));
-      if(delta<bestDelta){bestDelta=delta;best=i;}
-    });
-    [...dots].forEach((d,i)=>d.classList.toggle('active',i===best));
-  }
-  track.addEventListener('scroll',()=>requestAnimationFrame(setActive));
-  let down=false,startX=0,scrollX=0;
-  track.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;scrollX=track.scrollLeft;track.setPointerCapture(e.pointerId)});
-  track.addEventListener('pointermove',e=>{if(!down)return;track.scrollLeft=scrollX-(e.clientX-startX)});
-  ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev,()=>{down=false}));
-  track.setAttribute('tabindex','0');
-  track.addEventListener('keydown',e=>{if(e.key==='ArrowRight')track.scrollBy({left:340,behavior:'smooth'});if(e.key==='ArrowLeft')track.scrollBy({left:-340,behavior:'smooth'})});
-
-  const cards=[...document.querySelectorAll('.tcard')];
-  function closeAll(ex){cards.forEach(c=>{if(c!==ex)c.classList.remove('open')})}
-  cards.forEach(c=>{
-    c.addEventListener('pointerenter',()=>{closeAll(c);c.classList.add('open')});
-    c.addEventListener('pointerleave',()=>c.classList.remove('open'));
-    c.addEventListener('click',()=>{c.classList.toggle('open'); if(c.classList.contains('open')) closeAll(c)});
-    c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); } });
-  });
-  setActive();
-})();
-
-/* Countdown evergreen: sempre 10:00 (Oferta válida por:) */
-(function(){
-  const el=document.getElementById('countdown'); if(!el)return;
-  let deadline = Date.now() + (10*60*1000);
-  function tick(){
-    const diff = deadline - Date.now();
-    if(diff<=0){ el.textContent = "00:00"; return; }
-    const m=Math.floor(diff/60000), s=Math.floor((diff%60000)/1000);
-    el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  }
+  const el=document.getElementById('countdown'); if(!el) return;
+  const end = Date.now()+10*60*1000;
+  const tick=()=>{const d=end-Date.now(); if(d<=0){el.textContent='00:00';return}
+    const m=Math.floor(d/60000), s=Math.floor((d%60000)/1000);
+    el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`};
   tick(); setInterval(tick,1000);
 })();
 </script>
