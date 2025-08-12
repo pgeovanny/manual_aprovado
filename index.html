@@ -4,16 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Manual do Aprovado — O passo a passo definitivo</title>
-<meta name="theme-color" content="#0F2F7A" />
+<meta name="theme-color" content="#0D1F4F" />
 <style>
 :root{
   /* Azul */
-  --blue-bg:#0F2F7A; --blue-bg-2:#0A225D;
-  --blue-text:#F1F6FF; --blue-muted:#BFD1FF; --blue-stroke:rgba(255,255,255,.14);
+  --blue-1:#0E2B66; --blue-2:#0A1F4A; /* fundo */
+  --blue-text:#F1F6FF; --blue-muted:#C7D6FF; --blue-stroke:rgba(255,255,255,.14);
   /* Branco (cards) */
   --white:#FFFFFF; --ink:#172744; --ink-muted:#4B5E7A; --white-stroke:#E6ECF6; --chip:#F6F8FD;
   /* Acentos */
-  --brand:#2F79FF; --brand-2:#2EC8FF; --accent:#25D366; --warn:#FFC857;
+  --brand:#2F79FF; --brand-2:#2EC8FF;
+  --brand-dark1:#1E4ED8; --brand-dark2:#0E76CC; /* GRADIENTE MAIS ESCURO (CTA) */
+  --accent:#25D366; --warn:#FFC857;
   /* Layout */
   --radius:22px; --maxw:1160px; --tr:260ms cubic-bezier(.2,.7,.2,1);
 }
@@ -22,14 +24,20 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-  color:var(--blue-text);line-height:1.65;background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2));
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  color:var(--blue-text); line-height:1.65;
+  /* Degradê premium com radiais de profundidade */
+  background:
+    radial-gradient(1200px 800px at 16% -10%, rgba(60,110,220,.25), transparent 65%),
+    radial-gradient(900px 700px at 82% 112%, rgba(6,22,60,.55), transparent 58%),
+    linear-gradient(180deg,var(--blue-1),var(--blue-2));
 }
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 .section{padding:64px 0}
 @media (max-width:980px){.section{padding:44px 0}}
-.section.blue{background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2)) !important;color:var(--blue-text)}
+.section.blue{background:transparent;color:var(--blue-text)}
 h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
 h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 10px}
 .sub{font-size:clamp(.95rem,.75rem+1vw,1.15rem);margin-top:10px;opacity:.95}
@@ -53,19 +61,24 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .card-white a{color:#1B56FF !important}
 .card-white .btn-ghost{color:var(--ink) !important;border-color:var(--ink) !important}
 
-/* Pílulas internas para organizar texto longo */
-.sectioned{display:grid;gap:12px;max-width:72ch}
-.sectioned > *{background:#F8FAFF;border:1px solid #DFE8F5;border-radius:14px;padding:12px 14px;margin:0;color:var(--ink) !important}
-
-/* Listas */
+/* Seções internas / divisórias suaves */
+.section-split{max-width:72ch}
+.section-split > *{margin:0;padding:12px 14px;border-radius:14px;background:#F8FAFF;border:1px solid #DFE8F5}
+.section-split > * + *{margin-top:10px;box-shadow:inset 0 1px 0 rgba(9,30,66,.06)}
+/* Lista */
 .list{list-style:none;margin:0;padding:0;max-width:72ch}
 .card-white .list li{padding:12px 16px;border-radius:14px;background:#FBFDFF;border:1px solid #E9EEF7;color:var(--ink) !important}
 .list li+li{margin-top:10px}
 
 /* Botões */
 .btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
-.btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#07101F;box-shadow:0 14px 32px rgba(47,121,255,.35),0 6px 16px rgba(46,200,255,.25)}
-.btn-primary:hover{transform:translateY(-1px)}
+/* CTA PRINCIPAL — gradiente mais escuro */
+.btn-primary{
+  background:linear-gradient(135deg,var(--brand-dark1),var(--brand-dark2));
+  color:#FFFFFF;
+  box-shadow:0 16px 36px rgba(20,70,180,.35),0 8px 18px rgba(14,118,204,.22);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 20px 40px rgba(20,70,180,.42),0 10px 22px rgba(14,118,204,.28)}
 .btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
 .btn-ghost{background:transparent;border:1px solid currentColor;opacity:.95}
 .btn-ghost:hover{opacity:1}
@@ -82,7 +95,6 @@ h1,h2,p,li{overflow-wrap:anywhere}
 
 /* Depoimentos — vitrine com texto branco (legível) */
 .carousel{position:relative}
-/* Fades laterais (sem escurecer card) */
 .carousel::before,.carousel::after{
   content:""; position:absolute; top:14px; bottom:46px; width:28px; z-index:3; pointer-events:none;
   background:linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
@@ -97,10 +109,9 @@ h1,h2,p,li{overflow-wrap:anywhere}
 .track::-webkit-scrollbar-thumb{background:#C4D2F5;border-radius:8px}
 .slide{scroll-snap-align:start;min-width:320px;max-width:420px}
 @media (max-width:720px){.slide{min-width:86%;max-width:none}}
-/* Card do depoimento — premium */
 .tcard{
   background:linear-gradient(180deg,#1E3B73,#162E57);
-  color:#FFF; border:1px solid rgba(255,255,255,.28);
+  border:1px solid rgba(255,255,255,.28);
   border-radius:22px; padding:18px 18px 16px 18px;
   box-shadow:0 16px 30px rgba(8,14,28,.35), inset 0 1px 0 rgba(255,255,255,.12);
   cursor:pointer;
@@ -112,11 +123,13 @@ h1,h2,p,li{overflow-wrap:anywhere}
   border-color:rgba(255,255,255,.48);
   background:linear-gradient(180deg,#244A8E,#173464);
 }
+/* FORÇA BRANCO NOS DEPOIMENTOS */
+.tcard .tText, .tcard .tmeta strong, .tcard .tmeta .area, .tcard *{color:#FFFFFF !important}
 .thead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
-.tmeta strong{display:block;line-height:1.1;color:#FFF}
-.tmeta .area{font-size:.9rem;color:rgba(255,255,255,.85)}
-.tText{margin:8px 0 0 0;color:#FFF;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tmeta strong{display:block;line-height:1.1}
+.tmeta .area{font-size:.9rem;opacity:.9}
+.tText{margin:8px 0 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .tcard.open .tText{-webkit-line-clamp:unset;overflow:visible}
 .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .dot{width:8px;height:8px;border-radius:50%;background:#C8D6F0}
@@ -126,7 +139,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 #checkout .card-white{max-width:none}
 .headline{
   font-weight:900; margin:12px 0 8px; position:relative; display:inline-block;
-  background:linear-gradient(0deg,rgba(47,121,255,.25) 0, rgba(47,121,255,0) 60%);
+  background:linear-gradient(0deg,rgba(47,121,255,.23) 0, rgba(47,121,255,0) 60%);
   padding-bottom:4px; border-radius:6px;
 }
 .checkout-grid{display:grid; gap:22px; align-items:start; grid-template-columns:1fr}
@@ -154,10 +167,9 @@ h1,h2,p,li{overflow-wrap:anywhere}
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 @media (max-width:520px){.btn{padding:16px 18px}}
 .card-white:hover{transform:translateY(-1px)}
-/* Pequenos ajustes responsivos */
+/* Responsivo fino */
 @media (max-width:720px){
-  .card-white{border-radius:18px}
-  .tcard{border-radius:18px}
+  .card-white,.tcard{border-radius:18px}
   .steps{gap:14px}
 }
 </style>
@@ -181,7 +193,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
 <section class="section blue">
   <div class="container">
     <div class="card-white justify" data-anim>
-      <div class="sectioned">
+      <div class="section-split">
         <p class="lead">Você já estudou por meses ou até anos para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, sem método ou pulando de método em método, estudando sem organização e <strong>PERDENDO MUITO TEMPO</strong> com coisas que não trazem resultado.</p>
         <p class="lead">O <strong>Manual do Aprovado</strong> foi criado justamente para mudar essa realidade. Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente o que fazer desde o primeiro dia de estudo até a aprovação.</p>
       </div>
@@ -236,7 +248,7 @@ h1,h2,p,li{overflow-wrap:anywhere}
   <div class="container">
     <h2 data-anim>Quem elaborou este material</h2>
     <div class="card-white justify" data-anim>
-      <div class="sectioned">
+      <div class="section-split">
         <p class="lead">Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás, que juntos acumulam mais de <strong>15 aprovações</strong> em concursos públicos, incluindo colocações em primeiro lugar.</p>
         <p class="lead">Tudo aquilo que levamos anos para aprender na marra, errando e acertando, reunimos aqui de forma clara e aplicada. Assim, você evita os mesmos erros, economiza anos de estudo e aumenta muito suas chances de passar no próximo concurso.</p>
       </div>
