@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manual do Aprovado — Estude do jeito certo e passe mais rápido</title>
+<meta name="description" content="O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido. Para iniciantes e intermediários em concursos." />
+<meta name="theme-color" content="#0E1420" />
+<style>
+  /* ===========================
+     Variáveis & Reset
+  ============================ */
+  :root{
+    --bg:#0E1420;
+    --bg-2:#0B1E3A;
+    --card:#0C1B2E;
+    --primary:#2AA3FF;
+    --primary-2:#6FB7FF;
+    --text:#E8F1FF;
+    --muted:#A7B3C7;
+    --success:#29D3A0;
+    --warning:#FFC857;
+    --danger:#FF6B6B;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --shadow-soft:0 6px 18px rgba(0,0,0,.25);
+    --maxw:1120px;
+    --trans:220ms cubic-bezier(.2,.6,.2,1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(42,163,255,.15), transparent 60%),
+                radial-gradient(900px 480px at -10% 20%, rgba(15,65,120,.35), transparent 55%),
+                var(--bg);
+    color:var(--text);
+    line-height:1.55;
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--primary);text-decoration:none}
+  .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .section{padding:72px 0}
+  .muted{color:var(--muted)}
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(42,163,255,.15);color:var(--primary);font-weight:600;font-size:.85rem}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:saturate(120%) blur(6px);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-soft);
+  }
+  .grid{display:grid;gap:20px}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+  .btn{
+    appearance:none;border:0;cursor:pointer;border-radius:12px;
+    padding:14px 18px;font-weight:700;font-size:1rem;transition:transform var(--trans), box-shadow var(--trans), background var(--trans);
+    display:inline-flex;align-items:center;gap:10px;justify-content:center;text-align:center;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--primary), var(--primary-2));
+    color:#0a1220; box-shadow:0 8px 22px rgba(42,163,255,.35);
+  }
+  .btn-primary:hover{transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-outline{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--text)}
+  .cta-large{font-size:1.1rem;padding:16px 22px;border-radius:14px}
+
+  /* ===========================
+     Header / Hero
+  ============================ */
+  header.hero{
+    position:relative;padding-top:96px;padding-bottom:48px;overflow:hidden;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 1.2rem + 3vw, 3.5rem);
+    line-height:1.1;margin:0 0 16px;font-weight:900;letter-spacing:-0.02em;
+    text-shadow:0 2px 0 rgba(0,0,0,.15);
+  }
+  .hero p.sub{font-size:1.15rem;max-width:760px;margin:0 0 26px}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero .surface{
+    margin-top:28px;padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+  }
+  .microproof{display:flex;gap:18px;flex-wrap:wrap}
+  .microproof .chip{
+    padding:10px 12px;border:1px dashed rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.03);font-size:.95rem
+  }
+
+  /* ===========================
+     Dor -> Solução / Público
+  ============================ */
+  .pains .item{padding:18px}
+  .pains .item h3{margin:8px 0 8px;font-size:1.05rem}
+  .forwho .chip{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+
+  /* ===========================
+     Conteúdo (Acordeões)
+  ============================ */
+  .accordion{display:grid;gap:12px;margin-top:10px}
+  .acc{
+    border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02)
+  }
+  .acc summary{
+    list-style:none;cursor:pointer;padding:16px 18px;font-weight:700;display:flex;align-items:center;justify-content:space-between;
+  }
+  .acc summary::-webkit-details-marker{display:none}
+  .acc .acc-body{padding:0 18px 16px 18px}
+  .acc .acc-body p{margin:8px 0 0}
+  .acc .tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:.95rem}
+
+  /* ===========================
+     Steps / Benefícios
+  ============================ */
+  .step{padding:18px}
+  .step .num{width:34px;height:34px;border-radius:10px;background:rgba(42,163,255,.2);display:inline-flex;align-items:center;justify-content:center;font-weight:800;margin-right:10px}
+  .benefit{padding:18px}
+
+  /* ===========================
+     Depoimentos (Carrossel)
+  ============================ */
+  .carousel{position:relative;overflow:hidden}
+  .track{display:flex;gap:20px;transition:transform 480ms var(--trans)}
+  .testimonial{
+    min-width:320px;max-width:420px;flex:0 0 auto;padding:18px
+  }
+  .testimonial .who{display:flex;align-items:center;gap:12px;margin-top:6px}
+  .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg, var(--primary), var(--primary-2))}
+  .controls{display:flex;gap:10px;margin-top:14px}
+  .ctrl{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04)}
+  .ctrl:disabled{opacity:.4}
+
+  /* ===========================
+     Garantia / FAQ
+  ============================ */
+  .faq details{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02)}
+  .faq details+details{margin-top:10px}
+  .faq summary{cursor:pointer;font-weight:700}
+
+  /* ===========================
+     Checkout (único CTA)
+  ============================ */
+  .checkout .price{display:flex;align-items:flex-end;gap:12px;margin:12px 0 8px}
+  .old{color:var(--muted);text-decoration:line-through}
+  .now{font-size:2.2rem;font-weight:900;letter-spacing:-.02em;line-height:1}
+  .ribbon{display:inline-block;background:linear-gradient(135deg, var(--warning), #FFD77E);color:#1B1300;padding:6px 10px;border-radius:8px;font-weight:800}
+
+  /* ===========================
+     Floating WhatsApp (só no checkout)
+  ============================ */
+  .float-wa{
+    position:fixed;right:18px;bottom:18px;z-index:60;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity var(--trans), transform var(--trans);
+  }
+  .float-wa.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:#25D366;color:#0C2A18;font-weight:800;border:0;box-shadow:0 10px 22px rgba(0,0,0,.35);cursor:pointer}
+
+  /* ===========================
+     Modal Amostra
+  ============================ */
+  .modal{
+    position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:24px;z-index:80;
+  }
+  .modal.open{display:flex}
+  .modal .box{width:min(920px, 96vw);background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:16px;box-shadow:var(--shadow);padding:16px}
+  .modal header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .modal iframe{width:100%;height:70vh;border:0;border-radius:12px;background:#000}
+  .close{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+
+  /* ===========================
+     Scroll Animations
+  ============================ */
+  [data-animate]{opacity:0;transform:translateY(16px);transition:opacity 600ms var(--trans), transform 600ms var(--trans)}
+  .in-view{opacity:1 !important;transform:translateY(0) !important}
+</style>
+</head>
+<body>
+
+  <!-- Floating WhatsApp (fica invisível até o checkout entrar na tela) -->
+  <div class="float-wa" id="waFloat" aria-hidden="true">
+    <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">
+      <span>Fale no WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero section">
+    <div class="container">
+      <span class="badge">Manual do Aprovado</span>
+      <h1 data-animate>O passo a passo definitivo para estudar do jeito certo e passar mais rápido.</h1>
+      <p class="sub muted" data-animate>
+        Para quem está começando ou já está no ritmo: método claro, prático e testado — do primeiro dia até a aprovação.
+      </p>
+      <div class="actions" data-animate>
+        <button class="btn btn-primary" data-open-sample="amostras/geral.pdf" aria-haspopup="dialog">Ver amostra</button>
+        <a class="btn btn-ghost" href="#conteudo">Ver conteúdo programático</a>
+      </div>
+
+      <div class="surface" data-animate>
+        <div class="microproof">
+          <div class="chip">+15 aprovações acumuladas</div>
+          <div class="chip">Conteúdo criado por servidores do TJ-GO</div>
+          <div class="chip">Estratégia prática para iniciantes e intermediários</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DOR -> SOLUÇÃO / PRA QUEM É -->
+  <section class="section">
+    <div class="container grid grid-2">
+      <div class="card pains" data-animate>
+        <div class="item">
+          <span class="badge">O problema</span>
+          <h2>Estudar sem método custa caro: tempo e chances.</h2>
+          <p class="muted">
+            Você estuda há meses (ou anos) e sente que não sai do lugar? Pula de técnica em técnica, sem organização, e perde energia no que não dá resultado.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card item"><h3>Falta de direção</h3><p class="muted">Sem clareza do concurso-alvo e do plano por etapas.</p></div>
+          <div class="card item"><h3>Rotina confusa</h3><p class="muted">Dúvidas sobre o que estudar, quando revisar e como praticar.</p></div>
+          <div class="card item"><h3>Baixa evolução</h3><p class="muted">Muito esforço, pouco resultado mensurável.</p></div>
+        </div>
+      </div>
+      <div class="card forwho" data-animate>
+        <div class="item">
+          <span class="badge">Pra quem é</span>
+          <div class="grid">
+            <div class="chip">Quem estuda há +1 ano e não passou</div>
+            <div class="chip">Quem se sente perdido e sem direção</div>
+            <div class="chip">Quem quer passar mais rápido</div>
+            <div class="chip">Quem não quer perder tempo testando “métodos”</div>
+            <div class="chip">Quem está cansado de não evoluir</div>
+            <div class="chip">Quem não quer ser concurseiro vitalício</div>
+            <div class="chip">Quem busca método prático e testado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO DO MATERIAL -->
+  <section id="conteudo" class="section">
+    <div class="container">
+      <span class="badge">Conteúdo do Manual</span>
+      <h2 style="margin:8px 0 10px">O que você vai aprender</h2>
+      <p class="muted" style="max-width:820px">
+        Passo a passo claro desde a escolha do concurso até a reta final, com rotinas de estudo, revisões e prática orientada.
+      </p>
+
+      <div class="accordion">
+        <!-- Cada módulo com botão de amostra -->
+        <details class="acc" data-animate open>
+          <summary>1. Escolha do concurso-alvo</summary>
+          <div class="acc-body">
+            <p class="muted">Como definir onde focar para multiplicar suas chances e reduzir dispersão.</p>
+            <div class="tools">
+              <span class="pill">Critérios práticos de decisão</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo1.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>2. Quantas horas devo estudar por dia?</summary>
+          <div class="acc-body">
+            <p class="muted">Ajuste de carga horária por fase (pré e pós-edital) sem sacrificar consistência.</p>
+            <div class="tools">
+              <span class="pill">Rotina realista</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo2.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>3. Pré e pós-edital</summary>
+          <div class="acc-body">
+            <p class="muted">Como organizar o estudo antes e depois do edital, sem recomeçar do zero.</p>
+            <div class="tools">
+              <span class="pill">Planos por fase</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo3.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>4. Ciclo de estudos e teoria na prática</summary>
+          <div class="acc-body">
+            <p class="muted">Monte ciclos eficientes. Teoria: PDF x Videoaula (quando usar cada um).</p>
+            <div class="tools">
+              <span class="pill">Modelo de ciclo</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo4.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>5. Resumos, mapas e flashcards</summary>
+          <div class="acc-body">
+            <p class="muted">Quando fazer, como fazer e quando NÃO fazer para não perder tempo.</p>
+            <div class="tools">
+              <span class="pill">Templates práticos</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo5.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>6. Revisões e questões</summary>
+          <div class="acc-body">
+            <p class="muted">Como, quanto e quando revisar. Prática com questões e acompanhamento da evolução.</p>
+            <div class="tools">
+              <span class="pill">Rotina 24h/7d/30d</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo6.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc" data-animate>
+          <summary>7. Lei seca e reta final</summary>
+          <div class="acc-body">
+            <p class="muted">Como estudar lei seca sem travar. Estratégias para a véspera e o dia da prova.</p>
+            <div class="tools">
+              <span class="pill">Checklist de prova</span>
+              <button class="btn btn-outline" data-open-sample="amostras/modulo7.pdf">Ver amostra</button>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA NA PRÁTICA -->
+  <section class="section">
+    <div class="container">
+      <span class="badge">Como funciona</span>
+      <div class="grid grid-3" style="margin-top:10px">
+        <div class="card step" data-animate><span class="num">1</span><strong>Compra segura</strong><p class="muted">Pagamento 100% protegido.</p></div>
+        <div class="card step" data-animate><span class="num">2</span><strong>Acesso imediato</strong><p class="muted">Receba o material logo após a confirmação.</p></div>
+        <div class="card step" data-animate><span class="num">3</span><strong>Plano guiado</strong><p class="muted">Siga o passo a passo e acompanhe sua evolução.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS TANGÍVEIS -->
+  <section class="section">
+    <div class="container">
+      <span class="badge">Benefícios</span>
+      <div class="grid grid-3" style="margin-top:10px">
+        <div class="card benefit" data-animate><strong>Economia de tempo</strong><p class="muted">Pare de testar métodos. Siga o que funciona.</p></div>
+        <div class="card benefit" data-animate><strong>Organização simples</strong><p class="muted">Ciclos, revisões e questões definidos para você.</p></div>
+        <div class="card benefit" data-animate><strong>Evolução real</strong><p class="muted">Rotina mensurável até a aprovação.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVAS SOCIAIS -->
+  <section class="section">
+    <div class="container">
+      <span class="badge">Provas sociais</span>
+      <div class="carousel card" style="margin-top:14px" data-animate>
+        <div class="track" id="track">
+          <article class="testimonial card">
+            <p>“Eu estudava há 2 anos sem sair do lugar. Em 8 semanas com o Manual, fechei meu primeiro edital com segurança.”</p>
+            <div class="who"><div class="avatar" aria-hidden="true"></div><div><strong>Ana P.</strong><div class="muted">Iniciante em Tribunais</div></div></div>
+          </article>
+          <article class="testimonial card">
+            <p>“O ciclo e as revisões fizeram total diferença. Eu não perdia mais tempo decidido o que estudar.”</p>
+            <div class="who"><div class="avatar"></div><div><strong>Lucas R.</strong><div class="muted">Área Administrativa</div></div></div>
+          </article>
+          <article class="testimonial card">
+            <p>“Material direto ao ponto. Finalmente entendi como encaixar PDF, videoaula e lei seca na prática.”</p>
+            <div class="who"><div class="avatar"></div><div><strong>Bianca S.</strong><div class="muted">Carreiras policiais</div></div></div>
+          </article>
+        </div>
+        <div class="controls" style="padding:12px">
+          <button class="ctrl" id="prev" aria-label="Anterior">◀</button>
+          <button class="ctrl" id="next" aria-label="Próximo">▶</button>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:8px">Conteúdo desenvolvido por servidores do <strong>TJ-GO</strong>, com mais de <strong>15 aprovações</strong>, incluindo primeiros lugares.</p>
+    </div>
+  </section>
+
+  <!-- GARANTIA / SEGURANÇA -->
+  <section class="section">
+    <div class="container grid grid-2">
+      <div class="card" style="padding:18px" data-animate>
+        <span class="badge">Garantia</span>
+        <h3 style="margin:8px 0 6px">Sua compra 100% segura e garantida</h3>
+        <p class="muted">Se você ainda tiver dúvidas, pode falar com a gente no WhatsApp antes de finalizar.</p>
+      </div>
+      <div class="card faq" style="padding:18px" data-animate>
+        <span class="badge">FAQ</span>
+        <details open><summary>Quando recebo o acesso?</summary><p class="muted">Imediatamente após a confirmação do pagamento.</p></details>
+        <details><summary>Tem atualização?</summary><p class="muted">Sim, atualizações essenciais são disponibilizadas aos compradores.</p></details>
+        <details><summary>É para iniciantes?</summary><p class="muted">Sim. Foi desenhado para iniciantes e intermediários.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT (único CTA de compra + WA flutuante) -->
+  <section id="checkout" class="section checkout">
+    <div class="container">
+      <div class="card" style="padding:22px" data-animate>
+        <span class="ribbon">Oferta por tempo limitado</span>
+        <h2 style="margin:10px 0 6px">Acesse o Manual do Aprovado agora</h2>
+        <p class="muted">Tudo que levamos anos para aprender na marra, reunido de forma clara e aplicada — para você economizar tempo e passar mais rápido.</p>
+
+        <div class="price">
+          <div class="old">de R$ 197,00</div>
+          <div class="now">por R$ 97,00</div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+          <!-- ÚNICO botão de compra da página -->
+          <a class="btn btn-primary cta-large" id="buyBtn" href="PLACEHOLDER_PAYMENT_URL" target="_blank" rel="noopener">
+            Quero minha aprovação agora
+          </a>
+          <button class="btn btn-ghost" id="askBtn">Ainda tem dúvidas? Fale conosco no WhatsApp</button>
+        </div>
+
+        <p class="muted" style="margin-top:8px">Compra segura. Acesso imediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL AMOSTRA -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="box">
+      <header>
+        <strong id="modalTitle">Amostra do material</strong>
+        <button class="close" id="closeModal">Fechar</button>
+      </header>
+      <!-- Você pode trocar por um embed do seu PDF (Google Drive, etc.) -->
+      <iframe id="preview" src="" title="Visualização da amostra"></iframe>
+    </div>
+  </div>
+
+<script>
+  // ===========================
+  // Scroll animations (fade/slide)
+  // ===========================
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+    })
+  }, {threshold: .15});
+  document.querySelectorAll('[data-animate]').forEach(el=>io.observe(el));
+
+  // ===========================
+  // Carousel simples
+  // ===========================
+  const track = document.getElementById('track');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  let index = 0;
+  function move(dir){
+    const cards = track.children.length;
+    index = Math.max(0, Math.min(cards-1, index + dir));
+    track.style.transform = `translateX(${-index*340}px)`;
+  }
+  prev?.addEventListener('click', ()=>move(-1));
+  next?.addEventListener('click', ()=>move(1));
+
+  // ===========================
+  // Modal de Amostra
+  // ===========================
+  const modal = document.getElementById('modal');
+  const preview = document.getElementById('preview');
+  function openModal(src){
+    preview.src = src;
+    modal.classList.add('open');
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    setTimeout(()=>preview.src='', 200);
+  }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+  document.querySelectorAll('[data-open-sample]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const src = btn.getAttribute('data-open-sample') || '';
+      openModal(src);
+      // métrica simples:
+      const c = Number(localStorage.getItem('sample_clicks')||0)+1;
+      localStorage.setItem('sample_clicks', c);
+    });
+  });
+
+  // ===========================
+  // WhatsApp flutuante visível só no checkout
+  // ===========================
+  const waFloat = document.getElementById('waFloat');
+  const checkout = document.getElementById('checkout');
+  const askBtn = document.getElementById('askBtn');
+  const waLink = document.getElementById('waLink');
+
+  const waObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ waFloat.classList.add('visible'); }
+      else { waFloat.classList.remove('visible'); }
+    });
+  }, {threshold:.25});
+  waObserver.observe(checkout);
+
+  askBtn.addEventListener('click', ()=>{
+    window.open(waLink.href, '_blank', 'noopener');
+  });
+
+  // ===========================
+  // Único CTA de compra (métrica local)
+  // ===========================
+  document.getElementById('buyBtn').addEventListener('click', ()=>{
+    const c = Number(localStorage.getItem('buy_clicks')||0)+1;
+    localStorage.setItem('buy_clicks', c);
+  });
+
+  // Acessibilidade: fechar modal com ESC
+  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
+</script>
+</body>
+</html>
