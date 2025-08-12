@@ -4,176 +4,93 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Manual do Aprovado — O passo a passo definitivo</title>
-<meta name="description" content="Manual do Aprovado: o passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido." />
 <meta name="theme-color" content="#0A0F1F" />
 <style>
-/* ===== Design System ===== */
 :root{
-  /* AZUL (escuro) */
-  --blue-bg:#0A0F1F;        /* navy base */
-  --blue-bg-2:#0B1633;      /* petróleo */
-  --blue-card:#0E1C2E;      /* card azul */
-  --blue-text:#F1F6FF;
-  --blue-muted:#A6B6CC;
-  --blue-stroke:rgba(255,255,255,.12);
-
-  /* BRANCO */
-  --white-bg:#FFFFFF;
-  --white-card:#FFFFFF;
-  --white-text:#172744;
-  --white-muted:#4B5E7A;
-  --white-stroke:#E6ECF6;
-
-  /* Acentos */
-  --brand:#2F79FF;
-  --brand-2:#2EC8FF;
-  --accent:#25D366;   /* WhatsApp */
-  --warn:#FFC857;
-
-  --radius:18px;
-  --shadow-1:0 6px 14px rgba(0,0,0,.16);
-  --shadow-2:0 14px 32px rgba(0,0,0,.26);
-  --maxw:1120px;
-  --tr:260ms cubic-bezier(.2,.7,.2,1);
+  --blue-bg:#0A0F1F; --blue-bg-2:#0B1633; --blue-card:#0E1C2E;
+  --blue-text:#F1F6FF; --blue-muted:#A6B6CC; --blue-stroke:rgba(255,255,255,.12);
+  --white-bg:#FFFFFF; --white-text:#172744; --white-muted:#4B5E7A; --white-stroke:#E6ECF6;
+  --brand:#2F79FF; --brand-2:#2EC8FF; --accent:#25D366; --warn:#FFC857;
+  --radius:18px; --shadow-1:0 6px 14px rgba(0,0,0,.16); --shadow-2:0 14px 32px rgba(0,0,0,.26);
+  --maxw:1120px; --tr:260ms cubic-bezier(.2,.7,.2,1);
 }
-
-/* Reset & base */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  background:var(--blue-bg); color:var(--blue-text); line-height:1.65;
-}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;background:var(--blue-bg);color:var(--blue-text);line-height:1.65}
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
-.section{padding:64px 0}
-@media (max-width:820px){ .section{padding:42px 0} }
+.section{padding:64px 0} @media (max-width:820px){.section{padding:42px 0}}
+.section.blue{background:linear-gradient(180deg,var(--blue-bg),var(--blue-bg-2));color:var(--blue-text)}
+.section.white{background:var(--white-bg);color:var(--white-text)}
+.section.white .lead{color:var(--white-muted)} .section.blue .lead{color:var(--blue-muted)}
 
-/* Alternância de SEÇÕES */
-.section.blue{background:linear-gradient(180deg, var(--blue-bg), var(--blue-bg-2)); color:var(--blue-text)}
-.section.white{background:var(--white-bg); color:var(--white-text)}
-.section.white a{color:#1b56ff}
-.section.white .lead{color:var(--white-muted)}
-.section.blue  .lead{color:var(--blue-muted)}
+h1{font-size:clamp(2.2rem,1.2rem+3vw,3.4rem);font-weight:900;margin:0}
+h2{font-size:clamp(1.6rem,1rem+1.6vw,2.1rem);font-weight:900;margin:8px 0 6px}
+.sub{font-size:clamp(1rem,.8rem+1vw,1.4rem);margin-top:8px;opacity:.95}
 
-/* Títulos */
-h1{font-size:clamp(2.2rem, 1.2rem + 3vw, 3.4rem);font-weight:900;line-height:1.08;letter-spacing:-.02em;margin:0}
-h2{font-size:clamp(1.6rem, 1rem + 1.6vw, 2.1rem);font-weight:900;letter-spacing:-.01em;margin:8px 0 6px}
-.sub{font-size:clamp(1rem, .8rem + 1vw, 1.4rem);margin-top:8px;opacity:.95}
+.justify, .justify p, .justify li{ text-align: justify; } h1,h2,p,li{overflow-wrap:anywhere}
 
-/* Parágrafos e listas justificados e sem corte */
-.justify, .justify p, .justify li{ text-align: justify; }
-h1,h2,p,li{ overflow-wrap:anywhere; }
-
-/* Cards (azul e branco) */
 .card-blue{
-  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)), var(--blue-card);
-  border:1px solid var(--blue-stroke);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow-1), var(--shadow-2);
-  padding:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)),var(--blue-card);
+  border:1px solid var(--blue-stroke); border-radius:var(--radius); box-shadow:var(--shadow-1),var(--shadow-2);
+  padding:20px; color:var(--blue-text);
 }
 .card-white{
-  background:var(--white-card);
-  border:1px solid var(--white-stroke);
-  border-radius:20px;
-  box-shadow:0 10px 24px rgba(16,38,84,.12), 0 18px 36px rgba(16,38,84,.08);
+  background:#fff; color:var(--white-text);
+  border:1px solid var(--white-stroke); border-radius:20px; box-shadow:0 10px 24px rgba(16,38,84,.12),0 18px 36px rgba(16,38,84,.08);
   padding:20px;
-  color:var(--white-text);
 }
 
-/* Listas limpas */
 .list{list-style:none;margin:0;padding:0}
-.list li{
-  padding:12px 16px; border-radius:14px; margin:0;
-  border:1px solid rgba(0,0,0,.06);
-  background:rgba(0,0,0,.03);
-}
-.section.blue .list li{ border:1px solid var(--blue-stroke); background:rgba(255,255,255,.04) }
+.list li{padding:12px 16px;border-radius:14px;margin:0}
 .list li+li{margin-top:10px}
+.card-blue .list li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16)}
+.card-white .list li{background:rgba(23,39,68,.04);border:1px solid #e9eef7}
 
-/* Grid básico */
 .grid{display:grid;gap:22px}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (max-width:980px){ .grid-2{grid-template-columns:1fr} }
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))} @media (max-width:980px){.grid-2{grid-template-columns:1fr}}
 
-/* Botões */
-.btn{
-  appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;
-  font-weight:900;letter-spacing:.01em;display:inline-flex;align-items:center;justify-content:center;gap:12px;
-  transition:transform var(--tr), box-shadow var(--tr), background var(--tr), color var(--tr);
-}
-.btn-primary{
-  background:linear-gradient(135deg, var(--brand), var(--brand-2));
-  color:#07101F;
-  box-shadow:0 14px 32px rgba(47,121,255,.35), 0 6px 16px rgba(46,200,255,.25);
-}
-.btn-primary:hover{transform:translateY(-1px)}
-.btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
-.btn-ghost{
-  background:transparent;border:1px solid currentColor;opacity:.9
-}
-.section.blue  .btn-ghost{color:var(--blue-text)}
-.section.white .btn-ghost{color:var(--white-text)}
-.btn-ghost:hover{opacity:1}
+.btn{appearance:none;border:0;cursor:pointer;padding:14px 20px;border-radius:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--tr),box-shadow var(--tr),background var(--tr),color var(--tr)}
+.btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#07101F;box-shadow:0 14px 32px rgba(47,121,255,.35),0 6px 16px rgba(46,200,255,.25)}
+.btn-primary:hover{transform:translateY(-1px)} .btn-primary:focus-visible{outline:3px solid rgba(46,200,255,.6);outline-offset:2px}
+.btn-ghost{background:transparent;border:1px solid currentColor;opacity:.9} .btn-ghost:hover{opacity:1}
+.section.blue .btn-ghost{color:var(--blue-text)} .section.white .btn-ghost{color:var(--white-text)}
 .btn-block{width:100%}
 
-/* Como funciona — centralizado */
-.steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,300px));justify-content:center;justify-items:center;text-align:center}
-@media (max-width:980px){ .steps{grid-template-columns:1fr} }
+/* Como funciona – centralizado */
+.steps{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,280px));justify-content:center;justify-items:center;text-align:center}
+@media (max-width:980px){.steps{grid-template-columns:1fr}}
 .step{padding:20px;border-radius:18px;border:1px solid var(--white-stroke);background:#fff;box-shadow:0 8px 22px rgba(16,38,84,.12);width:100%}
-.num{
-  width:46px;height:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;font-weight:900;margin:0 auto 10px;
-  box-shadow:0 6px 16px rgba(47,121,255,.35)
-}
-.step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747}
-.step p{margin:0;color:#4a5d7b}
+.num{width:46px;height:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900;margin:0 auto 10px;box-shadow:0 6px 16px rgba(47,121,255,.35)}
+.step h4{margin:6px 0 6px;font-size:1.12rem;color:#132747} .step p{margin:0;color:#4a5d7b}
 
-/* Depoimentos: barras de rolagem visíveis + avatars com iniciais */
-.testis{display:flex;gap:16px;margin-top:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
-.testi{scroll-snap-align:start;min-width:320px;max-width:420px}
-@media (max-width:720px){
-  .testis{flex-direction:column;max-height:460px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y proximity;padding-right:8px}
-  .testi{min-width:auto;max-width:none}
-}
-/* Scrollbar visível */
-.testis::-webkit-scrollbar{height:10px;width:10px}
-.testis::-webkit-scrollbar-thumb{background:linear-gradient(135deg,var(--brand),var(--brand-2));border-radius:10px}
-.testis{scrollbar-width:thin;scrollbar-color:var(--brand) transparent}
-
-.testi .who{display:flex;align-items:center;gap:10px;margin-top:10px}
-.avatar{
-  width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900;letter-spacing:.02em;
-  box-shadow:0 6px 16px rgba(47,121,255,.35)
-}
+/* Depoimentos – carrossel horizontal com setas */
+.carousel{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 44px 10px 44px}
+.slide{scroll-snap-align:start;min-width:320px;max-width:420px}
+@media (max-width:720px){.track{padding:4px 12px 10px 12px}}
+.slide .who{display:flex;align-items:center;gap:10px;margin-top:10px}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:900}
+.ctrl{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:10px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#132747;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ctrl.left{left:10px} .ctrl.right{right:10px} .ctrl:hover{filter:brightness(1.05)} .ctrl:disabled{opacity:.4;cursor:not-allowed}
 
 /* Checkout */
 .price{display:flex;align-items:flex-end;gap:10px;margin:12px 0 8px}
-.old{text-decoration:line-through;opacity:.8}
-.section.white .old{color:#5b6f8f}
-.section.blue  .old{color:var(--blue-muted)}
-.now{font-size:2.45rem;font-weight:900;letter-spacing:-.02em}
-.ribbon{display:inline-block;background:linear-gradient(135deg, var(--warn), #FFD77E);color:#1B1300;padding:6px 10px;border-radius:10px;font-weight:900}
+.old{text-decoration:line-through;opacity:.8} .now{font-size:2.45rem;font-weight:900;letter-spacing:-.02em}
+.ribbon{display:inline-block;background:linear-gradient(135deg,var(--warn),#FFD77E);color:#1B1300;padding:6px 10px;border-radius:10px;font-weight:900}
 
-/* WhatsApp flutuante (só no checkout) */
-.float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr), transform var(--tr)}
+/* WhatsApp flutuante */
+.float-wa{position:fixed;right:16px;bottom:18px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity var(--tr),transform var(--tr)}
 .float-wa.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .wa-btn{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:999px;background:var(--accent);color:#0C2A18;font-weight:900;border:0;box-shadow:0 12px 26px rgba(0,0,0,.4);cursor:pointer}
 
-/* Animações simples */
-[data-anim]{opacity:0;transform:translateY(14px);transition:opacity .55s var(--tr), transform .55s var(--tr)}
-.in{opacity:1;transform:translateY(0)}
-
-@media (max-width:520px){ .btn{padding:16px 18px} }
+/* Animação discreta */
+[data-anim]{opacity:0;transform:translateY(14px);transition:opacity .55s var(--tr),transform .55s var(--tr)} .in{opacity:1;transform:translateY(0)}
+@media (max-width:520px){.btn{padding:16px 18px}}
 .card-blue:hover,.card-white:hover{transform:translateY(-1px)}
 </style>
 </head>
 <body>
 
-<!-- WhatsApp flutuante (fica visível só no checkout) -->
 <div class="float-wa" id="waFloat" aria-hidden="true">
   <a class="wa-btn" id="waLink" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
@@ -186,16 +103,12 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
   </div>
 </header>
 
-<!-- Detalhes do produto (BRANCO → card AZUL dentro para contraste invertido) -->
+<!-- Detalhes (BRANCO → card AZUL) -->
 <section class="section white">
   <div class="container">
     <div class="card-blue justify" data-anim>
-      <p class="lead">
-        Você já estudou por meses ou até anos para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, sem método ou pulando de método em método, estudando sem organização e <strong>PERDENDO MUITO TEMPO</strong> com coisas que não trazem resultado.
-      </p>
-      <p class="lead">
-        O <strong>Manual do Aprovado</strong> foi criado justamente para mudar essa realidade. Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente o que fazer desde o primeiro dia de estudo até a aprovação.
-      </p>
+      <p class="lead">Você já estudou por meses ou até anos para concursos, mas sente que não sai do lugar? ...</p>
+      <p class="lead">O <strong>Manual do Aprovado</strong> foi criado justamente para mudar essa realidade...</p>
     </div>
   </div>
 </section>
@@ -205,7 +118,7 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
   <div class="container">
     <h2 data-anim>Pra quem é o Manual do Aprovado?</h2>
     <div class="card-white justify" data-anim>
-      <ul class="list" style="border-color:#e9eef7">
+      <ul class="list">
         <li>Pra quem estuda há mais de 1 ano e ainda não passou em nada.</li>
         <li>Pra quem se sente perdido e sem direção nos estudos.</li>
         <li>Pra quem não sabe como estudar e se organizar.</li>
@@ -215,7 +128,7 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
   </div>
 </section>
 
-<!-- O que você vai aprender (BRANCO → card AZUL + amostra em ghost) -->
+<!-- O que você vai aprender (BRANCO → card AZUL + amostra) -->
 <section class="section white">
   <div class="container">
     <h2 data-anim>O que você vai aprender?</h2>
@@ -247,51 +160,49 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
   <div class="container">
     <h2 data-anim>Quem elaborou este material</h2>
     <div class="card-white justify" data-anim>
-      <p class="lead">
-        Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás, que juntos acumulam mais de <strong>15 aprovações</strong> em concursos públicos, incluindo colocações em primeiro lugar.
-      </p>
-      <p class="lead">
-        Tudo aquilo que levamos anos para aprender na marra, errando e acertando, reunimos aqui de forma clara e aplicada. Assim, você evita os mesmos erros, economiza anos de estudo e aumenta muito suas chances de passar no próximo concurso.
-      </p>
+      <p class="lead">Este conteúdo foi desenvolvido por servidores públicos do Tribunal de Justiça de Goiás...</p>
+      <p class="lead">Tudo aquilo que levamos anos para aprender na marra...</p>
     </div>
   </div>
 </section>
 
-<!-- Como funciona (BRANCO → cards BRANCOS centralizados) -->
+<!-- Como funciona (BRANCO → cards centralizados) -->
 <section class="section white">
   <div class="container">
     <h2 data-anim>Como funciona?</h2>
     <div class="steps" data-anim>
-      <div class="step"><div class="num">1</div><h4>Acesso Imediato</h4><p>Receba o Manual do Aprovado em PDF logo após a confirmação da compra.</p></div>
-      <div class="step"><div class="num">2</div><h4>Aplique o Método</h4><p>Siga o passo a passo detalhado para organizar seus estudos e rotina.</p></div>
-      <div class="step"><div class="num">3</div><h4>Acelere seus Resultados</h4><p>Comece a ver a diferença na sua performance e aproximação da aprovação.</p></div>
+      <div class="step"><div class="num">1</div><h4>Acesso Imediato</h4><p>Receba o PDF logo após a confirmação da compra.</p></div>
+      <div class="step"><div class="num">2</div><h4>Aplique o Método</h4><p>Siga o passo a passo para organizar estudos e rotina.</p></div>
+      <div class="step"><div class="num">3</div><h4>Acelere seus Resultados</h4><p>Veja a diferença na performance e proximidade da aprovação.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Depoimentos (AZUL → card BRANCO com rolagem e avatars) -->
+<!-- Depoimentos (AZUL → carrossel horizontal com setas) -->
 <section class="section blue">
   <div class="container">
     <h2 data-anim>O que falam sobre o Manual do Aprovado</h2>
-    <div class="card-white" data-anim>
-      <div class="testis">
-        <article class="testi">
+    <div class="card-white carousel" data-anim>
+      <button class="ctrl left" id="prev" aria-label="Anterior">◀</button>
+      <div class="track" id="track">
+        <article class="slide">
           <p class="justify">“Passei meses travado escolhendo método. Com o Manual, em 3 semanas fechei meu ciclo e subi nas questões.”</p>
-          <div class="who"><div class="avatar" aria-hidden="true">M</div><div><strong>Mariana</strong><div class="muted">Área administrativa</div></div></div>
+          <div class="who"><div class="avatar">M</div><div><strong>Mariana</strong><div class="muted">Área administrativa</div></div></div>
         </article>
-        <article class="testi">
+        <article class="slide">
           <p class="justify">“Eu não sabia revisar. O passo a passo tirou a dúvida diária do ‘o que estudar hoje’.”</p>
           <div class="who"><div class="avatar">D</div><div><strong>Diego</strong><div class="muted">Tribunais</div></div></div>
         </article>
-        <article class="testi">
+        <article class="slide">
           <p class="justify">“Aprendi a usar PDF, videoaula e lei seca sem perder tempo. Meu rendimento cresceu muito.”</p>
           <div class="who"><div class="avatar">S</div><div><strong>Sofia</strong><div class="muted">Carreiras policiais</div></div></div>
         </article>
-        <article class="testi">
+        <article class="slide">
           <p class="justify">“Com o plano de pré e pós-edital, parei de recomeçar do zero a cada edital.”</p>
           <div class="who"><div class="avatar">R</div><div><strong>Rafael</strong><div class="muted">Fiscal</div></div></div>
         </article>
       </div>
+      <button class="ctrl right" id="next" aria-label="Próximo">▶</button>
     </div>
   </div>
 </section>
@@ -303,10 +214,7 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
       <span class="ribbon">Oferta por tempo limitado</span>
       <h2 style="margin:10px 0 6px">Acesse o Manual do Aprovado agora</h2>
       <p class="lead justify" style="color:#CFE1FF">Sua compra 100% segura e garantida. Se tiver dúvidas, fale conosco no WhatsApp antes de finalizar.</p>
-      <div class="price">
-        <div class="old">de R$ 197,00</div>
-        <div class="now">por R$ 97,00</div>
-      </div>
+      <div class="price"><div class="old">de R$ 197,00</div><div class="now">por R$ 97,00</div></div>
       <div id="countdown" class="lead" style="margin:6px 0 12px;color:#CFE5FF"></div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
         <a class="btn btn-primary btn-block" id="buyBtn" href="PLACEHOLDER_PAYMENT_URL" target="_blank" rel="noopener">Quero garantir meu Manual agora</a>
@@ -316,60 +224,52 @@ h1,h2,p,li{ overflow-wrap:anywhere; }
   </div>
 </section>
 
-<!-- WhatsApp flutuante -->
+<!-- WA flutuante duplicado para robustez -->
 <div class="float-wa" id="waFloat2" aria-hidden="true">
   <a class="wa-btn" id="waLink2" href="https://wa.me/PLACEHOLDER_WHATSAPP_NUMBER?text=Tenho%20d%C3%BAvidas%20sobre%20o%20Manual%20do%20Aprovado" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
 <script>
-/* Aparecer com scroll */
-const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+/* Animar na entrada */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
-/* WhatsApp flutuante só no checkout + abrir chat pelo botão */
-const checkout = document.getElementById('checkout');
-function setupWA(floatId, linkId, btnId){
-  const float = document.getElementById(floatId);
-  const link = document.getElementById(linkId);
-  const btn  = document.getElementById(btnId);
-  const obs = new IntersectionObserver((es)=>es.forEach(e=>{float.classList.toggle('visible', e.isIntersecting)}), {threshold:.25});
-  obs.observe(checkout);
-  btn?.addEventListener('click', ()=> window.open(link.href, '_blank', 'noopener'));
+/* WA flutuante só no checkout */
+const checkout=document.getElementById('checkout');
+function setupWA(floatId,linkId,btnId){
+  const f=document.getElementById(floatId), l=document.getElementById(linkId), b=document.getElementById(btnId);
+  const o=new IntersectionObserver(es=>es.forEach(e=>f.classList.toggle('visible',e.isIntersecting)),{threshold:.25});
+  o.observe(checkout); b?.addEventListener('click',()=>window.open(l.href,'_blank','noopener'));
 }
-setupWA('waFloat','waLink','askBtn');
-setupWA('waFloat2','waLink2','askBtn');
+setupWA('waFloat','waLink','askBtn'); setupWA('waFloat2','waLink2','askBtn');
 
-/* Prefetch do link de pagamento quando checkout entra em tela */
-const pfObs = new IntersectionObserver((es)=>{
-  if(es.some(e=>e.isIntersecting)){
-    const href = document.getElementById('buyBtn')?.getAttribute('href');
-    if(href && !document.getElementById('pfLink')){
-      const l = document.createElement('link');
-      l.id='pfLink'; l.rel='prefetch'; l.href=href; l.as='document';
-      document.head.appendChild(l);
-    }
-    pfObs.disconnect();
-  }
+/* Prefetch do link de pagamento quando checkout entra na tela */
+const pfObs=new IntersectionObserver(es=>{
+  if(es.some(e=>e.isIntersecting)){const href=document.getElementById('buyBtn')?.getAttribute('href');if(href&&!document.getElementById('pfLink')){const l=document.createElement('link');l.id='pfLink';l.rel='prefetch';l.href=href;l.as='document';document.head.appendChild(l);}pfObs.disconnect();}
 },{threshold:.2});
 pfObs.observe(checkout);
 
-/* Métrica local do CTA */
-document.getElementById('buyBtn')?.addEventListener('click', ()=>{
-  const c = Number(localStorage.getItem('buy_clicks')||0)+1;
-  localStorage.setItem('buy_clicks', c);
-});
+/* Carrossel depoimentos – setas + swipe */
+(function(){
+  const track=document.getElementById('track'); const prev=document.getElementById('prev'); const next=document.getElementById('next');
+  function step(dir){ track.scrollBy({left: dir * 360, behavior:'smooth'}); }
+  prev.addEventListener('click',()=>step(-1)); next.addEventListener('click',()=>step(1));
+  let startX=0, sx=0;
+  track.addEventListener('pointerdown',e=>{startX=e.clientX; sx=track.scrollLeft; track.setPointerCapture(e.pointerId);});
+  track.addEventListener('pointermove',e=>{if(startX){track.scrollLeft=sx-(e.clientX-startX)}});
+  track.addEventListener('pointerup',()=>{startX=0});
+})();
 
 /* Countdown 10 minutos (evergreen) */
 (function(){
-  const el = document.getElementById('countdown'); if(!el) return;
+  const el=document.getElementById('countdown'); if(!el) return;
   const KEY='ma_deadline_10m';
-  let d = localStorage.getItem(KEY);
-  if(!d){ const t=new Date(); t.setMinutes(t.getMinutes()+10); d=t.toISOString(); localStorage.setItem(KEY,d); }
+  let d=localStorage.getItem(KEY);
+  if(!d){const t=new Date(); t.setMinutes(t.getMinutes()+10); d=t.toISOString(); localStorage.setItem(KEY,d);}
   function tick(){
     const now=new Date(), end=new Date(localStorage.getItem(KEY)); const diff=end-now;
     if(diff<=0){ el.textContent="Preço promocional encerrando — garanta agora."; return; }
-    const m = Math.floor(diff/6e4);
-    const s = Math.floor((diff%6e4)/1e3);
+    const m=Math.floor(diff/6e4), s=Math.floor((diff%6e4)/1e3);
     el.textContent=`Oferta ativa: ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
   tick(); setInterval(tick,1000);
